@@ -1,0 +1,78 @@
+
+<div class="registration__container">
+  <div class="company__formation__container">
+    <img class="close__icon" src="assets/close.png" alt="" routerLink="/home/main">
+    <p class="registration__title">Регистрация в личном кабинете</p>
+    <div class="company__formation__row">
+
+      <div class="company__formation__col">
+        <p class="error__msg" *ngIf = "this.baseService.errorReg">Заполните все поля для регистрации!</p>
+        <input class="text__input name" type="text" name="" value="" placeholder="Название компании" required #companyName>
+        <input class="text__input sphere" type="text" name="" value="" placeholder="Сфера деятельности" required #companySphere>
+        <input class="text__input address" type="text" name="" value="" placeholder="Адрес" required #companyAddress>
+        <input class="text__input working__time" type="text" name="" value="" placeholder="Время работы" required #companyWorkingTime>
+        <input class="text__input tel__number" type="text" name="" value="" placeholder="Телефон" required #companyTelNumber>
+        <input class="text__input email" type="email" name="" value="" placeholder="E-mail" required #companyEmail>
+        <input class="text__input site" type="text" name="" value="" placeholder="Адрес сайта или страницы с соц. сетях" required #companySite>
+      </div>
+
+      <div class="company__formation__second__col">
+        <p class="second__col__text__hint">например: Мебельный магазин</p>
+        <p class="second__col__time__hint">например: Пн - Пт  9.00 - 20.00 Сб - Вс 11.00 - 18.00, Обед 12.00 - 13.00</p>
+        <p class="add__phone__btn">+ Добавить телефон</p>
+      </div>
+
+    </div>
+
+    <div class="add__photo__row">
+      <div class="add__photo__btn">
+        <img src="assets/icons/add_photo.png" alt="" class="add__photo__icon">
+        <div class="add__photo__link">+ добавить фотографию</div>
+      </div>
+      <p class="add__photo__hint">например: фасад с вывеской магазина или интерьер.</p>
+    </div>
+
+    <div class="submit__row">
+      <div class="submit__btn"
+      (click)="callRegOrganization(companyName.value,
+       companySphere.value,
+       companyAddress.value,
+       companyWorkingTime.value,
+       companyTelNumber.value,
+       companyEmail.value,
+       companySite.value)">Отправить</div>
+      <div class="cancel__btn">Отменить</div>
+      <p class="privacy__text">
+        Согласен(на) с условиями
+        <span class="privacy__text__btn">"Политики конфеденциальности
+        и обработки персональных данных"</span> в соответствии с требованиями закона РБ № 455-3 от 10 ноября 2008 г.
+        "Об информации, информатизации и защите информации".
+      </p>
+    </div>
+    <div class="bottom__links__row">
+      <div class="bottom__links__container">
+        <div class="bottom__link">Для чего нужен личный кабинет?</div>
+        <div class="bottom__link">Правовая инфoрмация</div>
+      </div>
+      <div class="bottom__links__second__container">
+        <div class="bottom__link">Нужна помощь?</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="toogle__container">
+    <div class="toggle__msg__wait">
+      <img class="close__icon" src="assets/close.png" alt="" routerLink="/home/main">
+      <p class="toggle__msg__wait__title">Спасибо!</p>
+      <p class="toggle__msg__wait__text">В течении часа с вами свяжется менеджер для подтверждения информации и предоставит доступ к вашему кабинету.</p>
+      <p class="toggle__msg__wait__close__btn">Закрыть</p>
+    </div>
+    <div class="toggle__msg__succes">
+      <img class="close__icon" src="assets/close.png" alt="" routerLink="/home/main">
+      <p class="toggle__msg__succes__title">Спасибо!</p>
+      <p class="toggle__msg__succes__text">Благодарим за регистрацию, в данный момент мы не работаем. Менеджер свяжется с вами в <span>будние дни, с 9.00 до 18.00</span> Желаем хороших выходных!</p>
+      <p class="toggle__msg__succes__close__btn">Закрыть</p>
+    </div>
+  </div>
+</div>

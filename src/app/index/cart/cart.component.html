@@ -1,0 +1,81 @@
+<div class="institution__card__container">
+  <div class="institution__card__filter">
+    <div class="institution__card__filter__toogle">
+      <div class="institution__card__filter__toogle__parent" (click)="activeRotate()">
+        <img src="assets/arrow-down-sign-to-navigate.png" [ngClass]="rotate ? 'rotate' : ''"/>
+        <p>Сортировать по</p>
+      </div>
+
+      <div class="institution__card__filter__toogle__child" [ngClass]="rotate ? 'display' : ''">
+        <p [class.activeSort]='sortingTitle === "appraisal"' (click)='companySample("appraisal")'>по рейтингу</p>
+        <p [class.activeSort]='sortingTitle === "date"' (click)='companySample("date")'>по новизне</p>
+        <p [class.activeSort]='sortingTitle === "name"' (click)='companySample("name")'>по алфавиту</p>
+      </div>
+    </div>
+    <div class="institution__card__filter__toogle">
+      <div class="institution__card__filter__toogle__parent" (click)='companySampleAdditionally("photo")'>
+        <div [class.institution__card__filter__check__active]='sortingEvent === "photo"' class="institution__card__filter__check"></div>
+        <p [class.activeSort]='sortingEvent === "photo"'>С фото</p>
+      </div>
+    </div>
+    <div class="institution__card__filter__toogle">
+      <div class="institution__card__filter__toogle__parent" (click)='companySampleAdditionally("site")'>
+        <div class="institution__card__filter__check" [class.institution__card__filter__check__active]='sortingEvent === "site"'></div>
+        <p [class.activeSort]='sortingEvent === "site"'>С сайтом</p>
+      </div>
+    </div>
+    <div class="institution__card__filter__toogle">
+      <div class="institution__card__filter__toogle__parent" (click)='companySampleAdditionally("cardCalculation")'>
+        <div class="institution__card__filter__check" [class.institution__card__filter__check__active]='sortingEvent === "cardCalculation"'></div>
+        <p [class.activeSort]='sortingEvent === "cardCalculation"'>Расчет по карте</p>
+      </div>
+    </div>
+    <div class="institution__card__filter__toogle">
+      <div class="institution__card__filter__toogle__parent" (click)="activeRotateTime()">
+        <img src="assets/arrow-down-sign-to-navigate.png" [ngClass]="rotateTime ? 'rotate' : ''" />
+        <p>Время работы</p>
+      </div>
+
+      <div class="institution__card__filter__toogle__child" [ngClass]="rotateTime ? 'display' : ''">
+        <p (click)='workingHoursFunc("open")' [class.activeSort]='workingHours === "open"'>Открыто сейчас</p>
+        <p (click)='workingHoursFunc("aroundTheClock")' [class.activeSort]='workingHours === "aroundTheClock"'>Круглосуточно</p>
+      </div>
+    </div>
+    <div class="institution__card__filter__toogle">
+      <div class="institution__card__filter__toogle__parent">
+        <div class="institution__card__filter__check"></div>
+        <p>Доступная среда</p>
+      </div>
+    </div>
+  </div>
+  <div class="institution__card__list">
+    <div
+      (click)="getItem(cart.id)"
+      class="institution__card__item"
+      *ngFor="let cart of result"
+      [class.active]="getitemid === cart.id"
+    >
+      <div class="institution__card__item__logo__container">
+        <div class="institution__card__item__logo" style="background-image: url({{cart.logo}});"></div>
+        <div class="institution__card__item__stars">
+          <star-rating
+            value='{{cart.appraisal | roundNumber}}'
+            [totalstars]="5"
+            checkedcolor="#ffc107"
+            uncheckedcolor="#c7c3b6"
+            size="10px"
+            readonly="true"
+          >
+          </star-rating>
+        </div>
+      </div>
+      <div class="institution__card__item__content">
+        <h2 class="institution__card__item__content__title">{{cart.name}}</h2>
+        <p class="institution__card__item__content__subtitle">{{cart.subName}}</p>
+        <p class="institution__card__item__content__address">{{cart.address}}</p>
+        <p class="institution__card__item__content__description">{{cart.subContent}}</p>
+      </div>
+    </div>
+    <p class="base__item__short__description" *ngIf="!result.length">Здесь пока ничего нет</p>
+  </div>
+</div>

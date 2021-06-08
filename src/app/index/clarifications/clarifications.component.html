@@ -1,0 +1,41 @@
+<div class="clarifications__main__container">
+  <div class="reviews__user__header">
+    <img *ngIf='authService.userData.photoURL' src={{authService.userData.photoURL}} alt="" class="user__photo">
+    <div *ngIf='!authService.userData.photoURL' class="foto__user__review__not">{{authService.userData.displayName | titleCase}}</div>
+    <div class="user">
+      <div class="user__surname">{{authService.userData.displayName}}</div>
+      <div class="user__awards__row">
+        <div class="not__awards__header" *ngIf="authService.userData.awords?.length === 0">У вас пока нет достижений!</div>
+        <div class="user__award__item" *ngFor="let award of authService.userData.awords">
+          <img src="assets/icons/archivement-photo.png" alt="" class="user__award__item " *ngIf="award === 'Я модель'">
+          <img src="assets/icons/arcivement-medal-bronse.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Бронзовый статус'">
+          <img src="assets/icons/archivement-medal-silver.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Серебряный статус'">
+          <img src="assets/icons/archivement-medal-gold.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Золотой статус'">
+        </div>
+      </div>
+    </div>
+    <div class="user__status">
+      <div class="discont__status">Стандартная скидка
+        <img src="assets/icons/help.png" alt="" class="help__btn">
+      </div>
+      <div class="user__email" *ngIf='authService.userData.email'>{{authService.userData.email}} <span *ngIf='authService.userData.phoneNumber'> {{authService.userData.phoneNumber}}</span> </div>
+      <div class="edit__pofile__btn">Редактировать профиль</div>
+    </div>
+    <div class="logout__btn" (click)='signOut()'>Выйти</div>
+  </div>
+  <div class="clarification__items__container">
+    <div class="not__clarif" *ngIf="notClarifTitle">У вас пока нет уточнений!</div>
+    <div class="clarification__item" *ngFor="let clar of allClarifUser">
+      <div class="clarification__organization__col" (click)='showSaveFavorite(clar.category, clar.parent)'>
+        <div class="organization__name">{{clar.parentName}}</div>
+        <div class="organization__type">{{clar.parentSubName}}</div>
+        <div class="clarification__date">{{clar.date}}</div>
+      </div>
+      <div class="clarification__status__succes" *ngIf="clar.state === 'publish'">Опубликован</div>
+      <div class="clarification__status__moderation" *ngIf="clar.state === 'onModeration'">На модерации</div>
+      <div class="clarification__status__canceled" *ngIf="clar.state === 'canceled'">Отклонено</div>
+      <div class="clarification__text succes" *ngIf="clar.state === 'publish'">{{clar.content}}</div>
+      <div class="clarification__text on__moderation" *ngIf="clar.state === 'onModeration'">{{clar.content}}</div>
+      <div class="clarification__text canceled" *ngIf="clar.state === 'canceled'">{{clar.content}}</div>
+    </div>
+</div>

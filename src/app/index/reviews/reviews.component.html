@@ -1,0 +1,42 @@
+<div class="reviews__main__container">
+  <div class="reviews__user__header">
+    <img *ngIf='authService.userData.photoURL' src={{authService.userData.photoURL}} alt="" class="user__photo">
+    <div *ngIf='!authService.userData.photoURL' class="foto__user__review__not">{{authService.userData.displayName | titleCase}}</div>
+    <div class="user">
+      <div class="user__surname">{{authService.userData.displayName}}</div>
+      <div class="user__awards__row">
+        <div class="not__awards__header" *ngIf="authService.userData.awords?.length === 0">У вас пока нет достижений!</div>
+        <div class="user__award__item" *ngFor="let award of authService.userData.awords">
+          <img src="assets/icons/archivement-photo.png" alt="" class="user__award__item " *ngIf="award === 'Я модель'">
+          <img src="assets/icons/arcivement-medal-bronse.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Бронзовый статус'">
+          <img src="assets/icons/archivement-medal-silver.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Серебряный статус'">
+          <img src="assets/icons/archivement-medal-gold.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Золотой статус'">
+        </div>
+      </div>
+    </div>
+    <div class="user__status">
+      <div class="discont__status">Стандартная скидка
+        <img src="assets/icons/help.png" alt="" class="help__btn">
+      </div>
+      <div class="user__email" *ngIf='authService.userData.email'>{{authService.userData.email}} <span *ngIf='authService.userData.phoneNumber'> {{authService.userData.phoneNumber}}</span> </div>
+      <div class="edit__pofile__btn">Редактировать профиль</div>
+    </div>
+    <div class="logout__btn" (click)='signOut()'>Выйти</div>
+  </div>
+  <div class="reviews__items__container">
+    <div class="not__review" *ngIf="notReviewTitle">У вас пока нет отзывов!</div>
+    <div class="review__item" *ngFor="let review of allReviewUser">
+      <div class="review__organization__col" (click)='showSaveFavorite(review.category, review.parent)'>
+        <div class="organization__name">{{review.parentName}}</div>
+        <div class="organization__type">{{review.parentSubName}}</div>
+        <div class="review__date">{{review.date}}</div>
+      </div>
+      <div class="review__status__succes" *ngIf="review.state === 'publish'">Опубликован</div>
+      <div class="review__status__moderation" *ngIf="review.state === 'onModeration'">На модерации</div>
+      <div class="review__status__canceled" *ngIf="review.state === 'canceled'">Отклонен <img src="assets/icons/help.png" alt="" class="review__status__help"></div>
+      <div class="review__text succes" *ngIf="review.state === 'publish'">{{review.content}}</div>
+      <div class="review__text on__moderation" *ngIf="review.state === 'onModeration'">{{review.content}}</div>
+        <div class="review__text canceled" *ngIf="review.state === 'canceled'">{{review.content}}</div>
+    </div>
+  </div>
+</div>

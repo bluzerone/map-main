@@ -1,0 +1,702 @@
+<div [class.homeFoto]='homeFotoShow' class="foto__preview__container" *ngIf='showFotoPreview'>
+  <img (click)='hideFoto()' class="close__preview" src="assets/letter-x.png" alt="">
+  <swiper
+    [slidesPerView]="1"
+    [spaceBetween]="150"
+    [navigation]="true"
+    [index]=indexSlideChange
+    style="height:100%;"
+  >
+    <ng-template *ngFor='let image of allFotoCart; let i = index' swiperSlide>
+      <div class="swiper__image" style='background-image: url({{image.url}});'></div>
+    </ng-template>
+  </swiper>
+</div>
+
+<div class="discount__container">
+
+  <div *ngIf='!getDiscountModal' class="discount__container__item">
+    <img class="close__icon__shared" src="assets/close.png" alt="" (click)="closeModalDiscount()">
+      <p class="discount__container__item__text">Использование скидки для <span>{{modalDiscount.organization}}</span> </p>
+
+      <input class="discount__input"
+      type="text"
+      name=""
+      value=""
+      placeholder="Наименование товара (по желанию)"
+      [(ngModel)]='introducedDiscountProduct'
+      >
+      <p *ngIf='errorDiscountModal' class="errorDiscountModal">Необходимо ввести стоимость товара или услуги!</p>
+      <input class="discount__input"
+      type="number"
+      name=""
+      value=""
+      placeholder="Стоимость товара / услуги"
+      [(ngModel)]='introducedDiscount'
+      >
+      <p class="amountOfDiscount">Скидка: {{modalDiscount.amountOfDiscount}}%</p>
+      <p class="introducedDiscount" *ngIf='introducedDiscount'>Итоговая стоимость: <span>{{introducedDiscount - (introducedDiscount * modalDiscount.amountOfDiscount / 100) | number:'1.2-2'}} руб.</span></p>
+      <div class="apply__discount__btn" (click)='discountUse()'>Использовать скидку</div>
+  </div>
+  <div *ngIf='getDiscountModal' class="discount__container__item">
+    <img class="close__icon__shared" src="assets/close.png" alt="" (click)="closeModalDiscount()">
+      <p class="discount__container__item__text">Ваша скидка готова!</p>
+      <p class="textModalDisc">Название организации: <span>{{modalDiscount.organization}}</span></p>
+      <p class="textModalDisc" *ngIf='introducedDiscountProduct'>Название товара / услуги: <span>{{introducedDiscountProduct}}</span></p>
+      <p class="textModalDisc">Полная стоимость: <span>{{introducedDiscount}}</span> руб.</p>
+      <p class="textModalDisc">Скидка: <span>{{modalDiscount.amountOfDiscount}}%</span></p>
+      <p class="textModalDisc">Итоговая стоимость товара / услуги: <span>{{introducedDiscount - (introducedDiscount * modalDiscount.amountOfDiscount / 100) | number:'1.2-2'}} руб.</span></p>
+      <p class="textModalDisc">Уникальный код скидки: <span>{{personalDiscountCode}}</span></p>
+      <p class="textModalDisc">Дата: <span>{{getDiscountOrgDate}}</span></p>
+      <div class="apply__discount__btn" (click)='closeModalDiscount()'>Выход</div>
+  </div>
+</div>
+
+<div class="shared__container">
+  <div class="shared__container__item">
+    <img class="close__icon__shared" src="assets/close.png" alt="" (click)="closeModalShared()">
+    <p class="shared__container__item__text">Отправить через</p>
+    <div class="shared__container__item__icon__btn">
+      <div shareButton="facebook">
+        <img class="img__shared" src="assets/icons/facebookpng.png" alt="">
+      </div>
+      <div shareButton="tumblr">
+        <img class="img__shared" src="assets/icons/twit.png" alt="">
+      </div>
+      <div shareButton="linkedin">
+        <img class="img__shared" src="assets/icons/in.png" alt="">
+      </div>
+
+      <div shareButton="linkedin">
+        <img class="img__shared" src="assets/icons/pinterest.png" alt="">
+      </div>
+      <div shareButton="whatsapp">
+        <img class="img__shared" src="assets/icons/vatsapp.png" alt="">
+      </div>
+      <div shareButton="twitter">
+        <img class="img__shared" src="assets/icons/twitter.png" alt="">
+      </div>
+      <div shareButton="telegram">
+        <img class="img__shared" src="assets/icons/telega.png" alt="">
+      </div>
+
+      <div shareButton="vk">
+        <img class="img__shared" src="assets/icons/vk.png" alt="">
+      </div>
+      <div shareButton="line">
+        <img class="img__shared" src="assets/icons/line.png" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!authService.userData" class="registration__container">
+  <div *ngIf='!authService.regVerifiMessage' class="index__registration__container">
+    <img class="close__icon" src="assets/close.png" alt="" (click)="closeModal()">
+      <div class="registration__row" >
+        <div class="registration__col">
+            <p class="registration__title">Войти</p>
+            <p class="error__login" *ngIf='authService.errorLogin'>{{authService.errorLogin}}</p>
+            <input class="telephone__input" type="text" name="" value="" placeholder="Телефон / Почта" #userName>
+            <input class="password__input" type="password" name="" value="" placeholder="Пароль" #userPassword>
+            <div id="recaptcha-container-login"></div>
+            <div class="login__container">
+              <div class="login__btn" (click)="authService.SignIn(userName.value, userPassword.value)">Войти</div>
+              <div class="remember__me__container">
+                <input type="checkbox" id="happy" name="happy" value="yes">
+                <label for="happy">Запомнить меня</label>
+              </div>
+            </div>
+            <div class="login__social__container">
+              <p class="login__social__title">Войти с помощью</p>
+              <!-- <div class="login__social__item" (click)="authService.AppleAuth()"><img src="assets/icons/apple.png" alt="" class="login__social__icon">
+                <p class="login__social__text">Apple ID</p>
+              </div> -->
+              <div class="login__social__item" (click)="authService.FacebookAuth()"><img src="assets/icons/facebook.png" alt="" class="login__social__icon">
+                <p class="login__social__text">Facebook</p>
+              </div>
+              <div class="login__social__item" (click)="authService.GoogleAuth()"><img src="assets/icons/google.png" alt="" class="login__social__icon"  >
+                <p class="login__social__text">Google</p>
+              </div>
+              <!-- <div class="login__social__item"><img src="assets/icons/instagram.png" alt="" class="login__social__icon">
+                <p class="login__social__text">Instagram</p>
+              </div>
+              <div class="login__social__item"><img src="assets/icons/odnoklassniki.png" alt="" class="login__social__icon">
+                <p class="login__social__text">Одноклассники</p>
+              </div> -->
+              <div class="login__social__item" (click)="authService.signInWithVK()"><img src="assets/icons/vkontakte.png" alt="" class="login__social__icon">
+                  <p class="login__social__text">Вконтакте</p>
+              </div>
+            </div>
+            <div class="remember__pass__btn" (click)='forgotBtnToggleFunc()'>Забыли пароль?</div>
+            <div class="forgot__container" *ngIf='forgotBtnToggle'>
+              <input class="password__input__forgot" type="email" name="" value="" placeholder="Введите e-mail" #userForgotPassword>
+              <div class="login__btn__forgot" (click)='setForgotPassword(userForgotPassword.value)'>Войти</div>
+            </div>
+            <p class="privacy__text">
+              Согласен(на) с условиями
+              <span class="privacy__text__btn">"Политики конфеденциальности
+              и обработки персональных данных"</span> в соответствии с требованиями закона РБ № 455-3 от 10 ноября 2008 г.
+              "Об информации, информатизации и защите информации".
+            </p>
+        </div>
+
+        <div class="registration__col">
+            <p class="registration__title">Зарегистрироваться</p>
+            <p class="error__login" *ngIf='authService.errorReg'>{{authService.errorReg}}</p>
+            <input class="registration__input"
+            type="text"
+            name=""
+             value=""
+             placeholder="Имя*"
+              required
+              #userNameReg>
+            <input class="registration__input"
+             onfocus="(this.value = '+375')"
+             type="text"
+             name=""
+             onblur="(this.value = '')"
+             placeholder="Телефон"
+              #userPhone>
+            <input
+            class="registration__input"
+            type="email"
+            name=""
+            value=""
+            placeholder="Почта*"
+            #userEmail
+            required>
+            <input class="registration__input"
+            type="password"
+            name=""
+            value=""
+            placeholder="Пароль*"
+            #userPwd
+            required>
+            <input class="registration__input"
+            type="password"
+            name=""
+            value=""
+            placeholder="Повторить пароль*"
+            #userResPwd
+            required>
+            <div class="submit__registration__btn"
+              (click)="authService.SignUp(userEmail.value, userPwd.value, userResPwd.value, userNameReg.value, userPhone.value)">
+              Зарегистрироваться
+            </div>
+            <div id="recaptcha-container"></div>
+            <div class="check__privacy">
+              <input type="checkbox" id="subm__reg" name="happy">
+              <label for="subm__reg"><p class="privacy__text privacy__text__first">
+                Согласен(на) с условиями"Политики конфеденциальности
+                и обработки персональных данных в соответствии с требованиями закона РБ № 455-3 от 10 ноября 2008 г.
+                "Об информации, информатизации и защите информации".</label>
+            </div>
+        </div>
+
+      </div>
+
+  </div>
+  <div *ngIf='authService.regVerifiMessage' class="index__registration__container" style='height: 260px;'>
+    <img class="close__icon" src="assets/close.png" alt="" (click)="closeModal()">
+    <div class="registration__row"  style='height: 260px;display: flex;flex-direction: column;align-items: center;justify-content: center;'>
+      <p class="title__out__reg">Регистрация прошла успешно</p>
+      <p class="content__out__reg">Вам необходимо подтвердить адрес электронной почты! Проверьте свою почту и перейдите по ссылке в письме.</p>
+    </div>
+  </div>
+</div>
+<div class="index__container">
+  <div class="navigate__container">
+    <div class="navigate__container__last">
+      <div class="navigate__container__first">
+        <div class="navigate__header">
+          <div class="navigate__header__container">
+            <img (click)="hideContainer()" routerLink='/home/main' class="navigate__header__logo" src="assets/icons/archivement-search.png" alt="">
+            <h2 class="navigate__header__title">Бобруйск</h2>
+          </div>
+          <div class="navigate__header__search">
+            <input
+            class="search__input"
+            type="text"
+            placeholder="Купить обувь"
+            [(ngModel)]="search"
+            (keydown)="onKeyDownEvent($event)"
+            (blur)="onFocusEvent($event)"
+            (click)="clickInputEvent()"
+            >
+            <img (click)="closeSearch()" src="assets/close.png" class="close__input" alt="">
+          </div>
+        </div>
+        <div id="searchComponent">
+          <app-search *ngIf="search" [searchItem]='search'></app-search>
+        </div>
+        <div class="outlet__container">
+          <div id="routerOutlet">
+            <div [@triggerName]="prepareRoute(outlet)">
+              <router-outlet #outlet="outlet"></router-outlet>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="navigate__container__add">
+        <div *ngIf="fotoRubrics" class="image__rubrics" style="background-image: url({{fotoRubrics}});"></div>
+        <div class="navigate__container__add__list">
+
+          <div *ngFor="let baseItem of base" class='carts__category'>
+            <span *ngIf="baseItemNull" class="base__item__short__description">Здесь, пока, ничего нет</span>
+            <p (click)='setCountCategory(baseItem.id)' [routerLink]="['/home/cart', baseItem.id]" class="base__item__title">{{baseItem.title}} <span class="base__item__title__count">{{baseItem.count}}</span></p>
+            <span class="base__item__short__description">{{baseItem.shortDescription}}</span>
+          </div>
+          <div class="no__base__container" *ngIf="!base.length">
+            <span class="base__item__short__description">Здесь, пока, ничего нет</span>
+          </div>
+        </div>
+        <div *ngIf="cart" class="cart__navigate">
+          <div class="top__photo__navigate" style='background-image: url({{cart.preview}});'>
+            <div class="top__photo__navigate_gradient"></div>
+            <div class="top__photo__control">
+              <p (click)='addSaveFavorite(cart.address, cart.name, cart.id, cart.category)'>Сохранить</p>
+              <p (click)='sendShared()'>Отправить</p>
+              <p>Как проехать</p>
+            </div>
+            <div class="top__photo__title">
+              <h3>{{cart.name}}</h3>
+              <p>{{cart.subName | truncate: 60}}</p>
+              <div class="cart__star__head">
+                <star-rating
+                  value='{{cart.appraisal | roundNumber}}'
+                  [totalstars]="5"
+                  checkedcolor="#ffc107"
+                  uncheckedcolor="#ffffff"
+                  size="12px"
+                  readonly="false"
+                >
+                </star-rating>
+                <span>{{cart.appraisal}}</span>
+                <div class="back__star"></div>
+              </div>
+            </div>
+            <div class="top__photo__discount" (click)='addDiscount()'>
+              Получить скидку {{cart.discount}}%
+            </div>
+          </div>
+
+          <div class="navigate__cart">
+            <p
+              class="navigate__cart__item"
+              *ngFor="let item of navCart"
+              (click)="navActiveCart(item.name)"
+              [class.navigate__cart__active]="item.active"
+            >
+              {{item.name}}
+              <span class="review__count" *ngIf='item.name === "Отзывы"'>{{rewiewsLength}}</span>
+            </p>
+          </div>
+          <div class="contacts__cart__container" *ngIf="navCartActive === 'Контакты'">
+            <progress *ngIf='uploadProgressState' max="100" [value]="(uploadProgress | async)"></progress>
+            <div class="contacts__foto__container" *ngIf='allFoto !== cart.id'>
+              <div *ngFor='let image of allFotoCart; let i = index' >
+                <div>
+                  <div (click)="showFoto(i)" *ngIf='i === 0' class="contacts__foto__container__item" style='background-image: url({{image.url}});'></div>
+                  <div (click)="showFoto(i)" *ngIf='i === 1' class="contacts__foto__container__item" style='background-image: url({{image.url}});'></div>
+                  <div *ngIf='i === 3' class="contacts__foto__container__item" style='background-image: url({{image.url}});'>
+                    <div class="contacts__foto__container__item__add" (click)='allFotoFull(cart.id)'>
+                      +{{allFotoCart.length - 2}} фото
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <label class="input__file" for="input__file"><div class="contacts__foto__container__item" style='background-image: url("assets/fotocart4.png");'></div></label>
+
+              <input [style.display]='"none"' id="input__file" type="file" (change)="uploadPhoto($event)" accept="image/.*" />
+              <div class="no__photo" *ngIf="emptyPhoto">У данной компании пока нет загруженных фото!</div>
+
+            </div>
+            <div class="contacts__foto__container" *ngIf='allFoto === cart.id'>
+              <div *ngFor='let image of allFotoCart; let i = index' >
+                <div>
+                  <div (click)="showFoto(i)" class="contacts__foto__container__item" style='background-image: url({{image.url}});'></div>
+                </div>
+              </div>
+              <div class="contacts__foto__container__item" style='background-image: url("assets/fotocart4.png");'></div>
+            </div>
+            <div class="cart__content__container" (click)="descriptionShowCartEvent()">
+              <p *ngIf="!descriptionShowCart">{{cart.content | truncate : 110}}</p>
+              <p *ngIf="descriptionShowCart">{{cart.content}}</p>
+              <img [class.active-arrow-down]="descriptionShowCart" class="arrow-down" src="assets/arrow-down.png" alt="">
+            </div>
+            <div class="adress__cart__container">
+              <h5 class="adress__cart__title">{{cart.address}}</h5>
+              <p class="adress__cart__subtitle">{{cart.addressClarification}}</p>
+            </div>
+            <div class="time__cart__container" (click)='descriptionShowTimeEvent()'>
+              <div class="">
+                <h5 class="time__cart__title">Сегодня {{currentOpeningTime}}</h5>
+                <p class="time__cart__subtitle" *ngIf='openCloseCompanyTime'>Открыто</p>
+                <p class="time__cart__subtitle__close" *ngIf='!openCloseCompanyTime'>Закрыто</p>
+              </div>
+              <img class="arrow-down-time" src="assets/arrow-down.png" alt="" [class.active-arrow-down-time]="descriptionShowTime">
+            </div>
+            <div class="schedule__table" *ngIf='descriptionShowTime'>
+              <div class="schedule__col" *ngFor="let time of cart.orgWorkingTime">
+                <p class="day__name" [ngClass]="{'day__off': time.startTime === 'Вых.'}">{{time.day}}</p>
+                <p class="start__working__time" [ngClass]="{'day__off__working__time': time.startTime === 'Вых.'}" >{{time.startTime}}</p>
+                <p class="end__working__time" *ngIf="time.endTime">{{time.endTime}}</p>
+              </div>
+            </div>
+            <div class="phone__cart__container">
+              <p class="phone__cart__title" *ngFor='let phone of cart.telNumbers'> {{phone.name}} {{phone.number}} </p>
+              <p class="phone__cart__subtitle" *ngFor='let item of cart.telNumbers'> <span *ngIf='item.workingTime'>{{item.workingTime}}</span> </p>
+            </div>
+            <div>
+              <p class="site__post__title" *ngIf='cart.siteLink'>
+                <a href="{{cart.siteLink}}" target="_blank">
+                  {{cart.siteLink}}
+                </a>
+              </p>
+              <p class="email__post__title" *ngIf='cart.emailLink'>
+                <a href="mailto:{{cart.emailLink}}">{{cart.emailLink}}</a>
+              </p>
+            </div>
+            <div class="social__cart__container">
+              <p *ngIf='cart.vkLink'>
+                <a href="{{cart.vkLink}}" target="_blank">Вконтакте</a>
+              </p>
+              <p *ngIf='cart.facebookLink'>
+                <a href="{{cart.facebookLink}}" target="_blank">Facebook</a>
+              </p>
+              <p *ngIf='cart.instagramLink'>
+                <a href="{{cart.instagramLink}}" target="_blank">Instagram</a>
+              </p>
+              <p *ngIf='cart.okLink'>
+                <a href="{{cart.okLink}}" target="_blank">Однокласники</a>
+                </p>
+              <p *ngIf='cart.youtubeLink'>
+                <a href="{{cart.youtubeLink}}" target="_blank">Youtube</a>
+              </p>
+            </div>
+            <div class="bottom__cart__content">
+              <div class="error__cart">
+                Нашли ошибку?
+              </div>
+              <div class="nav__cart__bottom">
+                <p>Это моя компания</p>
+                <p>Реклама на map</p>
+              </div>
+            </div>
+          </div>
+          <div class="info__cart__container" *ngIf="navCartActive === 'Инфо'">
+            <div class="information__cart" [innerHTML]="cart.information | safeHtml"></div>
+            <div class="bottom__cart__content">
+              <div class="error__cart">
+                Нашли ошибку?
+              </div>
+              <div class="nav__cart__bottom">
+                <p>Это моя компания</p>
+                <p>Реклама на map</p>
+              </div>
+            </div>
+          </div>
+          <div class="review__cart__container" *ngIf="navCartActive === 'Отзывы'">
+            <div class='base__item__short__description' *ngIf="rewiewsCart.length === 0">Здесь, пока, нет отзывов. Ваш отзыв может стать первым!</div>
+            <div class="review__container" *ngFor="let review of rewiewsCart">
+
+              <div class="review__name__user">
+                <div *ngIf='review.foto' class="foto__user__review" style='background-image: url({{review.foto}});'></div>
+                <div *ngIf='!review.foto' class="foto__user__review__not">{{review.name | titleCase}}</div>
+                <div class="name__user__review__container">
+                  <p class="name__user__review">{{review.name}}</p>
+                  <p class="date__user__review">{{review.date}}</p>
+                </div>
+                <div class="stars__user__review">
+                  <star-rating
+                    value={{review.appraisal}}
+                    [totalstars]="5"
+                    checkedcolor="#ffc107"
+                    uncheckedcolor="#c7c3b6"
+                    size="10px"
+                    readonly="true"
+                  >
+                  </star-rating>
+                </div>
+              </div>
+              <div class="review__content__user">
+                <span *ngIf='reviewFull !== review.id'>{{review.content | truncate : 150}}</span>
+                <span *ngIf='reviewFull === review.id'>{{review.content}}</span>
+                <div *ngIf='reviewFull !== review.id'>
+                  <p (click)='reviewInFull(review.id)' class="review__in__full" *ngIf='review.content.length > 191'>Отзыв целиком</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="price__cart__container" *ngIf="navCartActive === 'Цены'">
+            <div *ngIf="cart.categoryPriceList.length === 0" class='base__item__short__description'>
+              Здесь, пока, ничего нет.
+            </div>
+            <div class="search__input__cart__container" *ngIf="cart.categoryPriceList.length !== 0">
+              <input
+                [(ngModel)]="searchCart"
+                placeholder="Найти товар или услугу"
+                class="search__input__cart"
+                type="text"
+                (input)="onKeyDownEventCart($event.target.value)"
+                >
+            </div>
+            <div *ngIf="!searchCart" class="categoty__cart__container">
+              <div *ngFor='let category of cart.categoryPriceList'>
+                <div class="" *ngIf='!category.parent' >
+                  <p class="category__parent__name" (click)="filterSubCategory(category.id)"><img
+                    [class.category__parent__name-arrow-down-active]="subCategoryCartId === category.id"
+                    class="category__parent__name-arrow-down"
+                    src="assets/arrow-down.png" alt="">{{category.title}}</p>
+                  <div class="sub__container__cart" *ngFor='let sub of subCategoryCart'>
+                    <div
+                      class="sub__container__cart__item"
+                      *ngIf='sub.parent === category.id'>
+                      <span (click)="getProductCart(sub.id)">{{sub.title}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="input__search__container__cart" *ngIf="searchCart">
+              <div
+              *ngFor='let category of cart.categoryPriceList | filter:searchCart'
+              appHighlight
+              [searchedWord]="searchCart"
+              [content]="category.title"
+              [classToApply]="'font-weight-bold'"
+              [setTitle]="'true'"
+              class="title__search__category"
+              (click)="getProductCart(category.id)"
+              >
+                <span class="search__category__cart" *ngIf='category.parent'>{{category.title}}</span>
+              </div>
+            </div>
+            <div class="result__search__category">
+              <div (click)='backProduct()' class="back__product">
+                <img src="assets/back.png" alt="">
+                Назад
+              </div>
+              <div class='base__item__short__description' *ngIf='productCart.length === 0'>Здесь, пока, ничего нет.</div>
+              <div class="result__search__category__item" *ngFor="let product of productCart">
+                <div class="result__search__category__item__first">
+                  <div class="result__search__category__item__first-img" style="background-image: url({{product.img}});"></div>
+                  <div class="result__search__category__item__first-price">{{product.price}} <span>BYN</span></div>
+                </div>
+                <div class="result__search__category__item__first__last">
+                  <h5 class="result__search__category__item__first__last-title">{{product.title}}</h5>
+                  <p class="result__search__category__item__first__last-content">{{product.content}}</p>
+                  <p class="result__search__category__item__first__last-prefix">Цены предоставлены владельцем фирмы и могут отличаться</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!authService.userData" class="bookmarks__container">
+        <div class="bookmark active-link" (click)="openModal()">
+          Войти
+        </div>
+      </div>
+
+      <div *ngIf="authService.userData" class="bookmarks__container">
+        <div
+        *ngFor="let item of listMenu"
+        class="bookmark"
+        routerLinkActive="active-link"
+        routerLink='{{item.url}}'
+        (click)="myAccountService()"
+        style={{item.style}}
+        >
+          {{item.title}}
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="cart__container">
+    <div class="icon__button">
+      <img src="assets/photo.png" alt="">
+      <img src="assets/bus.png" alt="">
+      <img src="assets/network-avatar.png" alt="" (click)="openModal()" *ngIf="!authService.userData">
+      <div class="exit__icon" *ngIf="authService.userData" (click)="singOut()">
+        <img src="assets/exit.png" alt="">
+      </div>
+      <img src="assets/menu.png" alt="" (click)="openMenu()">
+    </div>
+
+    <div class="containerCart">
+      <ya-map
+      [center]=centerControl
+      [zoom]=zoom
+      [state]="{
+        type: 'yandex#map',
+        controls: []
+      }">
+        <ya-placemark *ngFor="let org of placemark"
+          [geometry]=org.geometry
+          [properties]='{hintContent: org.name, balloonContent: org.name}'
+          [options]="placemarkOptions"
+        ></ya-placemark>
+        <ya-control
+          type="RouteButton"
+          [parameters]="{ options: {
+            position: {position: 'absolute', left: 60, top: 20}
+          } }"
+        ></ya-control>
+      </ya-map>
+    </div>
+
+    <div *ngIf="!authService.userData" class="registration__container">
+      <div *ngIf='!authService.regVerifiMessage' class="index__registration__container">
+        <img class="close__icon" src="assets/close.png" alt="" (click)="closeModal()">
+          <div class="registration__row" >
+            <div class="registration__col">
+                <p class="registration__title">Войти</p>
+                <p class="error__login" *ngIf='authService.errorLogin'>{{authService.errorLogin}}</p>
+                <input class="telephone__input" type="text" name="" value="" placeholder="Телефон / Почта" #userName>
+                <input class="password__input" type="password" name="" value="" placeholder="Пароль" #userPassword>
+                <div id="recaptcha-container-login"></div>
+                <div class="login__container">
+                  <div class="login__btn" (click)="authService.SignIn(userName.value, userPassword.value)">Войти</div>
+                  <div class="remember__me__container">
+                    <input type="checkbox" id="happy" name="happy" value="yes">
+                    <label for="happy">Запомнить меня</label>
+                  </div>
+                </div>
+                <div class="login__social__container">
+                  <p class="login__social__title">Войти с помощью</p>
+                  <!-- <div class="login__social__item" (click)="authService.AppleAuth()"><img src="assets/icons/apple.png" alt="" class="login__social__icon">
+                    <p class="login__social__text">Apple ID</p>
+                  </div> -->
+                  <div class="login__social__item" (click)="authService.FacebookAuth()"><img src="assets/icons/facebook.png" alt="" class="login__social__icon">
+                    <p class="login__social__text">Facebook</p>
+                  </div>
+                  <div class="login__social__item" (click)="authService.GoogleAuth()"><img src="assets/icons/google.png" alt="" class="login__social__icon"  >
+                    <p class="login__social__text">Google</p>
+                  </div>
+                  <!-- <div class="login__social__item"><img src="assets/icons/instagram.png" alt="" class="login__social__icon">
+                    <p class="login__social__text">Instagram</p>
+                  </div>
+                  <div class="login__social__item"><img src="assets/icons/odnoklassniki.png" alt="" class="login__social__icon">
+                    <p class="login__social__text">Одноклассники</p>
+                  </div> -->
+                  <div class="login__social__item" (click)="authService.signInWithVK()"><img src="assets/icons/vkontakte.png" alt="" class="login__social__icon">
+                      <p class="login__social__text">Вконтакте</p>
+                  </div>
+                </div>
+                <div class="remember__pass__btn" (click)='forgotBtnToggleFunc()'>Забыли пароль?</div>
+                <div class="forgot__container" *ngIf='forgotBtnToggle'>
+                  <input class="password__input__forgot" type="email" name="" value="" placeholder="Введите e-mail" #userForgotPassword>
+                  <div class="login__btn__forgot" (click)='setForgotPassword(userForgotPassword.value)'>Войти</div>
+                </div>
+                <p class="privacy__text">
+                  Согласен(на) с условиями
+                  <span class="privacy__text__btn">"Политики конфеденциальности
+                  и обработки персональных данных"</span> в соответствии с требованиями закона РБ № 455-3 от 10 ноября 2008 г.
+                  "Об информации, информатизации и защите информации".
+                </p>
+            </div>
+
+            <div class="registration__col">
+                <p class="registration__title">Зарегистрироваться</p>
+                <p class="error__login" *ngIf='authService.errorReg'>{{authService.errorReg}}</p>
+                <input class="registration__input"
+                type="text"
+                name=""
+                 value=""
+                 placeholder="Имя*"
+                  required
+                  #userNameReg>
+                <input class="registration__input"
+                 onfocus="(this.value = '+375')"
+                 type="text"
+                 name=""
+                 onblur="(this.value = '')"
+                 placeholder="Телефон"
+                  #userPhone>
+                <input
+                class="registration__input"
+                type="email"
+                name=""
+                value=""
+                placeholder="Почта*"
+                #userEmail
+                required>
+                <input class="registration__input"
+                type="password"
+                name=""
+                value=""
+                placeholder="Пароль*"
+                #userPwd
+                required>
+                <input class="registration__input"
+                type="password"
+                name=""
+                value=""
+                placeholder="Повторить пароль*"
+                #userResPwd
+                required>
+                <div class="submit__registration__btn"
+                  (click)="authService.SignUp(userEmail.value, userPwd.value, userResPwd.value, userNameReg.value, userPhone.value)">
+                  Зарегистрироваться
+                </div>
+                <div id="recaptcha-container"></div>
+                <div class="check__privacy">
+                  <input type="checkbox" id="subm__reg" name="happy">
+                  <label for="subm__reg"><p class="privacy__text privacy__text__first">
+                    Согласен(на) с условиями"Политики конфеденциальности
+                    и обработки персональных данных в соответствии с требованиями закона РБ № 455-3 от 10 ноября 2008 г.
+                    "Об информации, информатизации и защите информации".</label>
+                </div>
+            </div>
+
+          </div>
+
+      </div>
+      <div *ngIf='authService.regVerifiMessage' class="index__registration__container" style='height: 260px;'>
+        <img class="close__icon" src="assets/close.png" alt="" (click)="closeModal()">
+        <div class="registration__row"  style='height: 260px;display: flex;flex-direction: column;align-items: center;justify-content: center;'>
+          <p class="title__out__reg">Регистрация прошла успешно</p>
+          <p class="content__out__reg">Вам необходимо подтвердить адрес электронной почты! Проверьте свою почту и перейдите по ссылке в письме.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="navdrop__container" #navdrop>
+    <div class="">
+      <div class="navdrop__container__header">
+        <img src="assets/icons/archivement-search.png" alt="">
+        <img (click)="closeMenu()" class="close__icon close__icon__menu" src="assets/close.png" alt="">
+      </div>
+      <div class="navdrop__content" #navdropContent>
+        <div class="navdrop__content__item">
+          <p>Новое в бобруйске</p>
+        </div>
+        <div class="navdrop__content__item">
+          <p>ПК версия</p>
+          <p>Мобильная версия</p>
+        </div>
+        <div class="navdrop__content__item">
+          <p routerLink="/auth/login">Личный кабинет</p>
+          <p>Добавить организацию</p>
+          <p>Разместить рекламу</p>
+          <p>Данные</p>
+        </div>
+        <div class="navdrop__content__item">
+          <p>Обратная связь</p>
+          <p>Справка</p>
+          <p>Лицензионное соглашение</p>
+          <p>Политика конфиденциальности</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

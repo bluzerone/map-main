@@ -1,0 +1,63 @@
+
+
+<div class="registration__container">
+  <div class="auth__registr__container">
+    <div class="back__btn" routerLink="/auth/login">
+      <img src="assets/next.png" alt="" class="back__icon">
+      <p class="back__btn__text">Войти</p>
+    </div>
+    <img class="close__icon" src="assets/close.png" alt="" routerLink="/home/main">
+    <p class="registration__title">Регистрация в личном кабинете</p>
+      <div class="registration__row">
+
+        <div class="registration__col">
+            <p class="error__msg" *ngIf = "this.baseService.errorReg">Заполните все поля для отправки!</p>
+            <select class="input__city" name="" required #orgCity>
+              <option value="Бобруйск">Бобруйск</option>
+              <option value="Минск">Минск</option>
+              <option value="Могилёв">Могилёв</option>
+              <option value="Гродно">Гродно</option>
+              <option value="Гомель">Гомель</option>
+            </select>
+            <input class="organization__input" type="text" name="" value="" placeholder="Название, организация" required #orgName>
+            <p class="hint__text">Введите e-mail. На него мы пришлем письмо для активации аккаунт.</p>
+            <input class="email__input" type="email" name="" value="" placeholder="name@gmail.com" required #orgEmail>
+            <p class="email__hint__text">Может потребоваться несколько дней для проверки</p>
+            <div class="access__btn" (click)="callAddRequest(orgCity.value, orgName.value, orgEmail.value)">Получить доступ</div>
+            <div class="bottom__links__container">
+              <div class="bottom__link">Для чего нужен личный кабинет?</div>
+              <div class="bottom__link">Правовая инфoрмация</div>
+            </div>
+        </div>
+        <div class="registration__col">
+
+              <div class="contact__number">
+                <img src="assets/icons/phone-call.png" alt="" class="contact__number__icon">
+                <p class="contact__number__text">+375 29 123 45 67</p>
+              </div>
+              <p class="contact__number__hint"><span>понедельник - пятница</span>
+                с 9.00 до 18.00
+              </p>
+              <p class="contact__hint">Единый номер регистрации личного кабинета компании на сайте map</p>
+              <div class="bottom__registration__container">
+                <div class="bottom__link">Нужна помощь?</div>
+              </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="toogle__container">
+    <div class="toggle__msg__wait">
+      <img class="close__icon" src="assets/close.png" alt="" routerLink="/home/main">
+      <p class="toggle__msg__wait__title">Спасибо!</p>
+      <p class="toggle__msg__wait__text">В течении часа с вами свяжется менеджер для подтверждения информации и предоставит доступ к вашему кабинету.</p>
+      <p class="toggle__msg__wait__close__btn">Закрыть</p>
+    </div>
+    <div class="toggle__msg__succes">
+      <img class="close__icon" src="assets/close.png" alt="" routerLink="/home/main">
+      <p class="toggle__msg__succes__title">Спасибо!</p>
+      <p class="toggle__msg__succes__text">Благодарим за регистрацию, в данный момент мы не работаем. Менеджер свяжется с вами в <span>будние дни, с 9.00 до 18.00</span> Желаем хороших выходных!</p>
+      <p class="toggle__msg__succes__close__btn">Закрыть</p>
+    </div>
+  </div>
+</div>

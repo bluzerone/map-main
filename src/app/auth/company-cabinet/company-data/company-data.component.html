@@ -1,0 +1,55 @@
+<div class="company__data__row">
+  <div class="company__data__col">
+    <div class="company__address__row">
+      <p class="company__address">{{baseSevice.myOrganization.address}}</p>
+      <p class="company__address__clarification">{{baseSevice.myOrganization.addressClarification}}</p>
+    </div>
+
+    <div class="schedule__table">
+      <div class="schedule__col" *ngFor="let time of this.baseSevice.myOrganization.orgWorkingTime">
+        <p class="day__name" [ngClass]="{'day__off': time.startTime === 'Вых.'}">{{time.day}}</p>
+        <p class="start__working__time" [ngClass]="{'day__off__working__time': time.startTime === 'Вых.'}" >{{time.startTime}}</p>
+        <p class="end__working__time" *ngIf="time.endTime">{{time.endTime}}</p>
+      </div>
+    </div>
+    <div class="telephone__numbers__row">
+      <div *ngFor="let item of baseSevice.myOrganization.telNumbers">
+        <p class="main__number">{{item.name}}  {{item.number}}</p>
+        <p class="telephone__line__working__time">{{item.workingTime}}</p>
+      </div>
+
+    </div>
+    <div class="contact__links__row">
+          <p class="address__link" *ngIf="this.baseSevice.myOrganization.siteLink">Сайт <a href="{{baseSevice.myOrganization.siteLink}}" target="_blank">{{baseSevice.myOrganization.siteLink}}</a> </p>
+          <p class="address__link" *ngIf="this.baseSevice.myOrganization.emailLink">E-mail <a href="{{baseSevice.myOrganization.emailLink}}" target="_blank">{{baseSevice.myOrganization.emailLink}}</a></p>
+          <p class="address__link" *ngIf="this.baseSevice.myOrganization.vkLinkk">Вконтакте <a href="{{baseSevice.myOrganization.vkLink}}" target="_blank">{{baseSevice.myOrganization.vkLink}}</a></p>
+          <p class="address__link" *ngIf="this.baseSevice.myOrganization.instagramLink">Instagram <a href="{{baseSevice.myOrganization.instagramLink}}" target="_blank">{{baseSevice.myOrganization.instagramLink}}</a></p>
+          <p class="address__link" *ngIf="this.baseSevice.myOrganization.youtubeLink">Youtube <a href="{{baseSevice.myOrganization.youtubeLink}}" target="_blank">{{baseSevice.myOrganization.youtubeLink}}</a></p>
+          <p class="address__link" *ngIf="this.baseSevice.myOrganization.facebookLink">Facebook <a href="{{baseSevice.myOrganization.facebookLink}}" target="_blank">{{baseSevice.myOrganization.facebookLink}}</a></p>
+          <p class="address__link" *ngIf="this.baseSevice.myOrganization.okLink">Одноклассники <a href="{{baseSevice.myOrganization.okLink}}" target="_blank">{{baseSevice.myOrganization.okLink}}</a></p>
+    </div>
+    <div class="editing__btn">Редактировать информацию</div>
+    <p class="editing__hint">Изменения вступят в силу после прохождения монерации, при необходимости с вами свяжется менеджер компании для уточнения данных.</p>
+  </div>
+
+  <div class="company__data__col__right">
+
+    <div class="company__current__img" style="background-image: url({{bigImage}});">
+      <p class="empty__photo" *ngIf="emptyPhoto">У вашей компании пока нет загруженных фото!</p>
+    </div>
+    <progress *ngIf='uploadProgressState' max="100" [value]="(uploadProgress | async)"></progress>
+
+    <div class="small__img__container">
+
+      <label class="input__file" for="input__file"><img  src="assets/icons/add_photo_square.png" alt="" class="add__img__btn company__img__small"></label>
+      <input [style.display]='"none"' id="input__file" type="file" (change)="upload($event)" accept="image/.*" />
+
+      <div class="photo__wrapper" *ngFor="let photo of allFotoOrg">
+        <div class="company__img__small"
+         style="background-image: url({{photo.url}});"
+         (click)='transformImage(photo.url)'></div>
+      </div>
+
+    </div>
+  </div>
+</div>

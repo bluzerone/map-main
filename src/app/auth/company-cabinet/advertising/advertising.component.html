@@ -1,0 +1,101 @@
+  <div class="no__advertising" *ngIf="emptyAdvertising">
+    <p>У вашей компании в данный момент нет рекламы!</p>
+  </div>
+<div *ngFor='let reclam of advertisingArray'>
+  <div *ngIf='reclam.type === "Баннер в тематическом отделе"'>
+    <div class="advertising__row">
+      <div class="advertising__col">
+        <div class="advertising__header__row">
+          <p class="advertitsing__title">Баннер в рубрикаторе</p>
+          <p class="advertitsing__subtitle">Баннер в тематическом отделе</p>
+        </div>
+        <div class="advertising__remainig__row">
+          <div class="advertising__remainig__col">
+            <p class="remaining__text">Осталось 30 дней </p>
+            <p class="paid__text">оплачено до 12 февраля 2020</p>
+          </div>
+          <div class="extend__btn">Продлить</div>
+        </div>
+        <div class="outlet__box">
+          Переход на <a href="{{reclam.url}}" class="outlet__link">{{reclam.url}}</a>
+        </div>
+        <div class="conversions__table">
+          <div class="conversions__col">
+            <div class="impressions">Показов</div>
+            <div class="transitions">Переходов</div>
+          </div>
+          <div class="conversions__col">
+            <div class="col__title">день</div>
+            <div class="impressions__quantity">2.202</div>
+            <div class="transitions__quantity">453</div>
+          </div>
+          <div class="conversions__col">
+            <div class="col__title">неделя</div>
+            <div class="impressions__quantity">13.856</div>
+            <div class="transitions__quantity">3.589</div>
+          </div>
+          <div class="conversions__col">
+            <div class="col__title">месяц</div>
+            <div class="impressions__quantity">130.856</div>
+            <div class="transitions__quantity">35.897</div>
+          </div>
+        </div>
+      </div>
+      <div class="advertising__second__col">
+        <div style="background-image: url({{reclam.photo}});" class="company__img"></div>
+        <div class="advertising__btns__row">
+          <div class="advertising__btn">Заменить</div>
+          <div class="advertising__btn">Приостановить</div>
+          <div class="advertising__btn">Отключить</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngFor='let reclam of advertisingArray'>
+  <div *ngIf='reclam.type === "Ваши карточки выше конкурентов"'>
+    <div class="advertising__row">
+      <div class="advertising__col">
+        <div class="up__to__top__header__row">
+          <div class="up__to__top__title">Поднятие в топ поиска</div>
+          <div class="up__to__top__subtitle">Ваши карточки выше конкурентов</div>
+        </div>
+        <div class="advertising__remainig__row">
+          <div class="advertising__remainig__col">
+            <p class="remaining__text">Осталось 30 дней </p>
+            <p class="paid__text">оплачено до 12 февраля 2020</p>
+          </div>
+          <div class="extend__btn">Продлить</div>
+        </div>
+        <div class="up__to__top__conversions__table">
+          <div class="conversions__col">
+            <div class="impressions">Показов</div>
+            <div class="transitions">Переходов</div>
+          </div>
+          <div class="conversions__col">
+            <div class="col__title">день</div>
+            <div class="impressions__quantity">2.202</div>
+            <div class="transitions__quantity">453</div>
+          </div>
+          <div class="conversions__col">
+            <div class="col__title">неделя</div>
+            <div class="impressions__quantity">13.856</div>
+            <div class="transitions__quantity">3.589</div>
+          </div>
+          <div class="conversions__col">
+            <div class="col__title">месяц</div>
+            <div class="impressions__quantity">130.856</div>
+            <div class="transitions__quantity">35.897</div>
+          </div>
+        </div>
+      </div>
+      <div class="advertising__col">
+        <div class="rank__row">
+          <div class="rank__circle"> <span>1</span> место</div>
+          <div class="up__btn">Хочу выше</div>
+        </div>
+        <div class="up__hint">Пояснительный текст о том, что данный вид продвижения пересекается с “естественным” продвижением. Рекламные позиции и действительно хорошие места будут в перемешку, дабы не испортить сервис.</div>
+      </div>
+    </div>
+  </div>
+</div>

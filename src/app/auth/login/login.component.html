@@ -1,0 +1,48 @@
+<div class="login__container">
+  <div class="auth__registr__container">
+    <img class="close__icon" src="assets/close.png" alt="" routerLink="/home/main">
+    <div class="auth__registr__row">
+      <div class="auth__registr__col">
+        <h2 class="auth__registr__col__title">Войти</h2>
+        <p class="error__login" *ngIf="baseService.errorLogin">Не верный логин</p>
+        <p class="error__password" *ngIf="baseService.errorPassword">Не верный пароль</p>
+        <input class="login__input" type="text" name="" value="" placeholder="Логин" #loginOrg>
+        <input class="password__input" type="password" name="" value="" placeholder="Пароль" #passwordOrg>
+
+        <div class="auth__registr__submit__container">
+          <div class="submit__btn__login" (click)='baseService.getOrganization(loginOrg.value, passwordOrg.value)'>Войти</div>
+          <div class="happy__container">
+            <input type="checkbox" id="happy" name="happy" value="yes">
+            <label for="happy" class="happy__title">Запомнить меня</label>
+          </div>
+        </div>
+          <div class="rebember__pass__btn">Забыли пароль?</div>
+          <p class="privacy__text">
+            Согласен(на) с условиями
+            <span class="privacy__text__btn">"Политики конфеденциальности
+            и обработки персональных данных"</span> в соответствии с требованиями закона РБ № 455-3 от 10 ноября 2008 г.
+            "Об информации, информатизации и защите информации".
+          </p>
+            <div class="bottom__container">
+              <div class="bottom__link">Для чего нужен личный кабинет?</div>
+              <div class="bottom__link">Правовая инфoрмация</div>
+            </div>
+
+      </div>
+
+      <div class="auth__registr__col">
+        <h2 class="auth__registr__col__title">Регистрация</h2>
+        <p class="auth__registr__col__text">
+          <span>Получите доступ к вашей компании на карте map.</span>
+          Управляйте страницей вашей компании.
+          Обновляйте телефоны и время работы, загружайте фотографии,
+           отвечайте на отзывы и смотрите, как вас находят клиенты.
+        </p>
+          <div class="auth__registr__col__btn" routerLink="/auth/registration">Получить доступ</div>
+          <div class="bottom__auth__container">
+            <div class="bottom__link">Нужна помощь?</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

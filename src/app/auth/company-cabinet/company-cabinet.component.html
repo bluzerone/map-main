@@ -1,0 +1,139 @@
+
+<div class="company__cabinet__wrapper">
+      <div class="company__cabinet__row">
+        <div class="company__cabinet__col">
+          <div class="main__cabinet__box">
+              <div class="main__cabinet__box__header">
+                <p class="cabinet__title">Личный кабинет</p>
+                <div class="logout__btn" (click)='logOutOrg()' routerLink="/auth/login">Выйти</div>
+              </div>
+              <div class="about__organization">
+                <p class="organization__name">{{baseSevice.myOrganization.name}}</p>
+                <p class="organization__type">{{baseSevice.myOrganization.orgType}}</p>
+              </div>
+              <div class="cabinet__navigation__row">
+                <div class="cabinet__navigation__link"
+                routerLink="company-data"
+                routerLinkActive="active">Данные компании</div>
+                <div class="cabinet__navigation__link"
+                routerLink="statistics"
+                routerLinkActive="active">Статистика</div>
+                <div class="cabinet__navigation__link"
+                routerLink="advertising"
+                routerLinkActive="active">Реклама</div>
+                <div class="cabinet__navigation__link"
+                 routerLink="catalog"
+                 routerLinkActive="active">Каталог</div>
+              </div>
+              <div class="outlet__container">
+                <div [@triggerName]="prepareRoute(outlet)">
+                  <router-outlet #outlet="outlet"></router-outlet>
+                </div>
+              </div>
+              <div class="bottom__links__container">
+                <div class="bottom__link">Для чего нужен личный кабинет?</div>
+                <div class="bottom__link">Правовая инфoрмация</div>
+              </div>
+          </div>
+        </div>
+        <div class="company__cabinet__col">
+          <div class="company__cabinet__col_row">
+            <div class="tarrif_box">
+              <div class="tarrif__header__row">
+                <p class="header__row__title">Тарифный план</p>
+                <div class="change__tarrif__btn">Сменить тарифный план</div>
+              </div>
+              <div class="tarrif__box__main__row">
+                <div class="tarrif__box__col">
+                  <div class="col__title">На скидке</div>
+                  <div class="col__text">Текст описания тарифного плана.
+                  С другой стороны новая модель организационной
+                  деятельности обеспечивает широкому
+                  кругу (специалистов) участие в формировании
+                  новых предложений.</div>
+                </div>
+                <div class="tarrif__box__second__col">
+                  <div class="second__col__title">Осталось 12 дней</div>
+                  <div class="prolongation__btn">Продлить</div>
+                  <p class="tarrif__plan">Старт<span> от 100 BYN в месяц</span></p>
+                  <p class="tarrif__plan">Стандарт<span> от 200 BYN в месяц</span></p>
+                  <p class="tarrif__plan">Супер<span> от 300 BYN в месяц</span></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="company__cabinet__col_row">
+            <div class="advertising__box">
+              <div class="placement__btn">Разместить рекламу</div>
+            </div>
+            <div class="review__box">
+              <div class="no__review" *ngIf="emptyReview">В адрес вашей компании пока не было отзывов!</div>
+              <div  class="review__preview__container" *ngIf="!emptyReview">
+                <swiper
+                  [slidesPerView]="1"
+                  [spaceBetween]="0"
+                  [navigation]="false"
+                  [index]=indexSlideChange
+                  style="height:100%;"
+                >
+                  <ng-template *ngFor='let review of allReviewUser; let i = index' swiperSlide>
+                    <div class="review__item__wrapper">
+                      <div class="review__header">
+                        <div class="current__rating">{{review.appraisal}}</div>
+                        <div class="reviews__rating">
+                          <div class="stars__row">
+                            <star-rating
+                              value='{{review.appraisal}}'
+                              [totalstars]="5"
+                              checkedcolor="#ffc107"
+                              uncheckedcolor="#dbdbdb"
+                              size="12px"
+                              readonly="true"
+                            >
+                            </star-rating>
+                          </div>
+                          <div class="review__quantity">{{allReviewUser.length}} отзывов</div>
+                        </div>
+                      </div>
+                      <div class="last__review__box">
+                        <div class="last__review__header">
+                          <p class="reviewer__name">{{review.name | truncate : 30}}</p>
+                          <p class="review__item__number">{{i + 1}} / {{allReviewUser.length}}</p>
+                        </div>
+                        <p class="review__date">{{review.date}}</p>
+                        <p class="review__text">{{review.content}}</p>
+                      </div>
+                    </div>
+                  </ng-template>
+                </swiper>
+              </div>
+            </div>
+          </div>
+          <div class="company__cabinet__col_row">
+            <div class="statistic__box">
+              <div class="statistic__header">
+                <p class="statistic__header__title">Статистика по скидкам</p>
+                <div class="separation__box">
+                  <p class="separation__item" [class.active]="activeStateDiscount" (click)="createStatArray(true, false)">За неделю</p>
+                  <p class="separation__item" [class.active]="!activeStateDiscount" (click)="createStatArray(false, true)">За месяц</p>
+                </div>
+                <div class="download__btn">Скачать Excel</div>
+              </div>
+              <div style="display: block;">
+                <canvas baseChart width="665" height="150"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  [plugins]="lineChartPlugins">
+                </canvas>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

@@ -1,0 +1,126 @@
+<div class="awards__main__container">
+  <div class="awards__user__header">
+    <img *ngIf='authService.userData.photoURL' src={{authService.userData.photoURL}} alt="" class="user__photo">
+    <div *ngIf='!authService.userData.photoURL' class="foto__user__review__not">{{authService.userData.displayName | titleCase}}</div>
+    <div class="user">
+      <div class="user__surname">{{authService.userData.displayName}}</div>
+      <div class="user__awards__row">
+        <div class="not__awards__header" *ngIf="authService.userData.awords?.length === 0">У вас пока нет достижений!</div>
+        <div class="user__award__item" *ngFor="let award of authService.userData.awords">
+          <img src="assets/icons/archivement-photo.png" alt="" class="user__award__item " *ngIf="award === 'Я модель'">
+          <img src="assets/icons/arcivement-medal-bronse.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Бронзовый статус'">
+          <img src="assets/icons/archivement-medal-silver.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Серебряный статус'">
+          <img src="assets/icons/archivement-medal-gold.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Золотой статус'">
+        </div>
+      </div>
+    </div>
+    <div class="user__status">
+      <div class="discont__status">Стандартная скидка
+        <img src="assets/icons/help.png" alt="" class="help__btn">
+      </div>
+      <div class="user__email" *ngIf='authService.userData.email'>{{authService.userData.email}} <span *ngIf='authService.userData.phoneNumber'> {{authService.userData.phoneNumber}}</span> </div>
+      <div class="edit__pofile__btn">Редактировать профиль</div>
+    </div>
+    <div class="logout__btn" (click)='signOut()'>Выйти</div>
+  </div>
+  <div class="awards__main__row">
+    <div class="current__awards__col">
+      <div class="not__awards" *ngIf="notAwardsTitle">У вас пока нет достижений!</div>
+      <div class="current__award" *ngIf="fotoArrayLength >= 30">
+        <img src="assets/icons/archivement-photo.png" alt="" class="award__img">
+        <div class="about__current__award">
+          <div class="award__name">Я модель</div>
+          <div class="award__description">Вы загрузили 30 фото!</div>
+        </div>
+      </div>
+      <div class="current__award" *ngIf="summaryUserAwardsPoints >= 30">
+        <img src="assets/icons/arcivement-medal-bronse.png" alt="" class="award__img medal">
+        <div class="about__current__award">
+          <div class="award__name">Бронзовый статус</div>
+          <div class="award__description">Вы добавили в map 30 фото, отзывов или уточнений длинее 100 символов!</div>
+        </div>
+      </div>
+      <div class="current__award" *ngIf="summaryUserAwardsPoints >= 60">
+        <img src="assets/icons/archivement-medal-silver.png" alt="" class="award__img medal">
+        <div class="about__current__award">
+          <div class="award__name">Серебряный статус</div>
+          <div class="award__description">Вы добавили в map 60 фото, отзывов или уточнений длинее 100 символов!</div>
+        </div>
+      </div>
+      <div class="current__award" *ngIf="summaryUserAwardsPoints >= 90">
+        <img src="assets/icons/archivement-medal-gold.png" alt="" class="award__img medal">
+        <div class="about__current__award">
+          <div class="award__name">Золотой статус</div>
+          <div class="award__description">Вы добавили в map 90 фото, отзывов или уточнений длинее 100 символов!</div>
+        </div>
+      </div>
+      <!-- <div class="award__shopaholic current__award">
+        <img src="assets/icons/shopaholic.png" alt="" class="award__shopaholic__img award__img">
+        <div class="about__current__award">
+          <div class="award__name">Шопоголик</div>
+          <div class="award__description">Удовольствие в процессе</div>
+        </div>
+      </div>
+      <div class="award__hero current__award">
+        <img src="assets/icons/hero.png" alt="" class="award__hero__img award__img">
+        <div class="about__current__award">
+          <div class="award__name">Герой в городе</div>
+          <div class="award__description">Помощь это призвание</div>
+        </div>
+      </div>
+      <div class="award__opinion current__award">
+        <img src="assets/icons/opinion.png" alt="" class="award__opinion__img award__img">
+        <div class="about__current__award">
+          <div class="award__name">Собственное мнение</div>
+          <div class="award__description">Отзыв это важно</div>
+        </div>
+      </div> -->
+    </div>
+    <div class="awards__second__col">
+        <div class="achievement__item">
+          <div class="archivement__header__row">
+            <img src="assets/icons/archivement-photo-bw.png" alt="" class="archivement__photo archivement__img" *ngIf="fotoArrayLength < 30">
+            <img src="assets/icons/archivement-photo.png" alt="" class="archivement__photo archivement__img" *ngIf="fotoArrayLength >= 30">
+            <div class="archivement__header__col">
+              <div class="archivement__name">Я модель</div>
+              <div class="archivement__progress">{{fotoArrayLength}} из 30</div>
+            </div>
+          </div>
+          <div class="archivement__description">Описание очивки. Не следует, однако забывать, что укрепление и развитие структуры представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям.</div>
+        </div>
+        <div class="achievement__item">
+          <div class="archivement__header__row">
+            <img src="assets/icons/archivement-medal-bronse-bw.png" alt="" class="archivement__medal__bronse archivement__img" *ngIf="summaryUserAwardsPoints < 30">
+            <img src="assets/icons/arcivement-medal-bronse.png" alt="" class="archivement__medal__bronse archivement__img" *ngIf="summaryUserAwardsPoints >= 30">
+            <div class="archivement__header__col">
+              <div class="archivement__name">Бронзовый статус</div>
+              <div class="archivement__progress">{{summaryUserAwardsPoints}} из 30</div>
+            </div>
+          </div>
+          <div class="archivement__description">Добавьте в bmap 30 фото, отзывов (длиннее 100 символов) или уточнений. Можно добавлять что- то одно, а можно и то, и другое,  и третье в любых комбинациях.</div>
+        </div>
+        <div class="achievement__item">
+          <div class="archivement__header__row">
+            <img src="assets/icons/archivement-medal-silver-bw.png" alt="" class="archivement__medal__silver archivement__img" *ngIf="summaryUserAwardsPoints < 60">
+            <img src="assets/icons/archivement-medal-silver.png" alt="" class="archivement__medal__silver archivement__img" *ngIf="summaryUserAwardsPoints >= 60">
+            <div class="archivement__header__col">
+              <div class="archivement__name">Серебряный статус</div>
+              <div class="archivement__progress">{{summaryUserAwardsPoints}} из 60</div>
+            </div>
+          </div>
+          <div class="archivement__description">Добавьте в bmap 60 фото, отзывов (длиннее 100 символов) или уточнений. Можно добавлять что- то одно, а можно и то, и другое,  и третье в любых комбинациях.</div>
+        </div>
+        <div class="achievement__item">
+          <div class="archivement__header__row">
+            <img src="assets/icons/archivement-medal-gold-bw.png" alt="" class="archivement__medal__gold archivement__img" *ngIf="summaryUserAwardsPoints < 90">
+            <img src="assets/icons/archivement-medal-gold.png" alt="" class="archivement__medal__gold archivement__img" *ngIf="summaryUserAwardsPoints >= 90">
+            <div class="archivement__header__col">
+              <div class="archivement__name">Золотой статус</div>
+              <div class="archivement__progress">{{summaryUserAwardsPoints}} из 90</div>
+            </div>
+          </div>
+          <div class="archivement__description">Добавьте в bmap 90 фото, отзывов (длиннее 100 символов) или уточнений. Можно добавлять что- то одно, а можно и то, и другое,  и третье в любых комбинациях.</div>
+        </div>
+    </div>
+  </div>
+</div>

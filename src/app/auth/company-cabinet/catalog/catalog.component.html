@@ -1,0 +1,49 @@
+<div class="catalog__row">
+
+  <div class="catalog__col">
+    <div class="catalog__category">
+      <p class="category__parent__name" (click)="allProduct()">Вся продукция</p>
+      <div  class='base__item__short__description' *ngIf="emptyList">В вашей компании пока нет категорий.</div>
+      <div *ngFor='let category of baseService.myOrganization.categoryPriceList'>
+        <div class="" *ngIf="category">
+          <div class="" *ngIf='!category.parent' >
+            <p class="category__parent__name" (click)="filterSubCategory(category.id)"><img
+              [class.category__parent__name-arrow-down-active]="subCategoryCartId === category.id"
+              class="category__parent__name-arrow-down"
+              src="assets/arrow-down.png" alt="">{{category.title}}</p>
+            <div class="sub__container__cart" *ngFor='let sub of subCategoryCart'>
+              <div
+                class="sub__container__cart__item"
+                *ngIf='sub.parent === category.id'>
+                <span (click)="getProductCart(sub.id)">{{sub.title}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="catalog__second__col">
+    <div class="adding__btn" >Добавить</div>
+    <div *ngIf="emptyCategory" class='base__item__short__description'>
+      В этой категории, пока, ничего нет.
+    </div>
+        <div class="product__item" *ngFor='let product of productCart'>
+          <div class="product__item__small__box">
+            <img *ngIf="product.img" src={{product.img}} alt="" class="product__photo">
+            <p *ngIf="product.price" class="product__price__number">{{product.price}}</p>
+            <p *ngIf="product.price" class="product__price__currency">BYN</p>
+          </div>
+          <div class="product__item__big__box" *ngIf="product.title">
+            <p class="product__name">{{product.title}}</p>
+            <p class="about__product">{{product.content}}</p>
+             <div class="product__item__bottom__btns">
+               <div class="product__edit__btn">Редактировать</div>
+               <div class="product__edit__btn">Удалить</div>
+             </div>
+          </div>
+        </div>
+    </div>
+  </div>

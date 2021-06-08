@@ -1,0 +1,51 @@
+
+<div class="recieved__discount__chart">
+  <div class="recieved__discount__header__row">
+    <div class="recieved__discount__header__col">
+      <div class="recieved__discount__header__title">Получено скидок</div>
+      <div class="recieved__discount__header__subtitle">Количество скидочных купонов полученных пользователями</div>
+    </div>
+    <div class="recieved__discount__header__quantity">{{countStatisticsAll}}</div>
+  </div>
+  <div style="display: block;">
+    <canvas baseChart width="550" height="150"
+      [datasets]="lineChartDataRecievedDiscounts"
+      [labels]="lineChartLabelsRecievedDiscounts"
+      [options]="lineChartOptionsRecievedDiscounts"
+      [colors]="lineChartColorsRecievedDiscounts"
+      [legend]="lineChartLegendRecievedDiscounts"
+      [chartType]="lineChartTypeRecievedDiscounts"
+      [plugins]="lineChartPluginsRecievedDiscounts">
+    </canvas>
+  </div>
+  <div class="recieved__discount__chart__bottom__container">
+    <div class="recieved__discount__chart__hint">Текст описания графика. По какми критериям и за кой период делалась выборка. Каким образом формируется график.</div>
+    <div class="download__btn">Скачать Excel</div>
+  </div>
+</div>
+
+
+<div class="used__discount__chart">
+  <div class="used__discount__chart__header__row">
+    <div class="used__discount__header__col">
+      <div class="used__discount__header__title">Использовано скидок</div>
+      <div class="used__discount__header__subtitle">Количество скидочных купонов использованных пользователями</div>
+    </div>
+    <div class="used__discount__header__quantity">{{countStatisticsAllUse}}</div>
+  </div>
+  <div style="display: block;">
+    <canvas baseChart width="550" height="150"
+      [datasets]="lineChartDataDiscountsUsed"
+      [labels]="lineChartLabelsDiscountsUsed"
+      [options]="lineChartOptionsDiscountsUsed"
+      [colors]="lineChartColorsDiscountsUsed"
+      [legend]="lineChartLegendDiscountsUsed"
+      [chartType]="lineChartTypeDiscountsUsed"
+      [plugins]="lineChartPluginsDiscountsUsed">
+    </canvas>
+  </div>
+  <div class="used__discount__chart__bottom__container">
+    <div class="used__discount__chart__hint">Текст описания графика. По какми критериям и за кой период делалась выборка. Каким образом формируется график.</div>
+    <div class="download__btn">Скачать Excel</div>
+  </div>
+</div>

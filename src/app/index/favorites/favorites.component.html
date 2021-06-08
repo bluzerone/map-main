@@ -1,0 +1,48 @@
+
+<div class="favorites__main__container">
+  <div class="discount__user__header">
+    <img *ngIf='authService.userData.photoURL' src={{authService.userData.photoURL}} alt="" class="user__photo">
+    <div *ngIf='!authService.userData.photoURL' class="foto__user__review__not">{{authService.userData.displayName | titleCase}}</div>
+    <div class="user">
+      <div class="user__surname">{{authService.userData.displayName}}</div>
+      <div class="user__awards__row">
+        <div class="not__awards__header" *ngIf="authService.userData.awords?.length === 0">У вас пока нет достижений!</div>
+        <div class="user__award__item" *ngFor="let award of authService.userData.awords">
+          <img src="assets/icons/archivement-photo.png" alt="" class="user__award__item " *ngIf="award === 'Я модель'">
+          <img src="assets/icons/arcivement-medal-bronse.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Бронзовый статус'">
+          <img src="assets/icons/archivement-medal-silver.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Серебряный статус'">
+          <img src="assets/icons/archivement-medal-gold.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Золотой статус'">
+        </div>
+      </div>
+    </div>
+    <div class="user__status">
+      <div class="discont__status">Стандартная скидка
+        <img src="assets/icons/help.png" alt="" class="help__btn">
+      </div>
+      <div class="user__email" *ngIf='authService.userData.email'>{{authService.userData.email}} <span *ngIf='authService.userData.phoneNumber'> {{authService.userData.phoneNumber}}</span> </div>
+      <div class="edit__pofile__btn">Редактировать профиль</div>
+    </div>
+    <div class="logout__btn" (click)='signOut()'>Выйти</div>
+  </div>
+  <div class="favorites__main__row">
+    <div class="favorites_col">
+      
+      <div [class.active]='currentlySelected === item.id' class="favorite__category__item" *ngFor='let item of favoritesFolders'>
+        <div [class.displayNone]='renameRes === item.id' (click)='getContentFolder(item.id)' class="favorite__category__name">{{item.name}} <span class="favorite__category__count">{{item.content.length}}</span></div>
+        <div *ngIf='renameRes === item.id'> <input [(ngModel)]='renameModel' autofocus class="input__favorites__rename" type="text"> </div>
+        <div [class.displayNone]='renameRes === item.id' class="favorite__category__edit__btn" (click)='rename(item.id, item.name)'>Редактировать</div>
+        <div *ngIf='renameRes === item.id' class="favorite__category__edit__btn__save" (click)='renameReq(item.id, item.name)'>Сохранить</div>
+      </div>
+    </div>
+    <div class="favorites__second__col">
+      <div *ngIf='notList' class="notList">Нет сохраненных компаний</div>
+        <div class="favorite__content__item" *ngFor='let list of contentFavorite'>
+          <div class="favorite__item__col">
+            <div class="favorite_item__name" (click)='showSaveFavorite(list.category, list.parent)'>{{list.name}}</div>
+            <div class="favorite__item__address">{{list.adres}}</div>
+          </div>
+          <div class="favorite__item__remove__btn" (click)='removeItemList(list.id)'>Удалить</div>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="search__container">
+  <div
+    class="list-group-item"
+    *ngFor = "let item of items | filter:searchItem"
+    appHighlight
+    [searchedWord]="searchItem"
+    [content]="item.title"
+    [classToApply]="'font-weight-bold'"
+    [setTitle]="'true'"
+    [routerLink]="['/home/cart', item.id]"
+    (click)="hideSearch()"
+    >
+    {{item.title}}
+  </div>
+</div>

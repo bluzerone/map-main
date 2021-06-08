@@ -1,0 +1,38 @@
+<div class="favorites__container">
+  <div class="icon__favorites__container" >
+    <div *ngFor="let item of iconFavorites">
+      <div  class="icon__favorites__item" (click)="showListIcon(item.id)" *ngIf="!item.parent">
+        <img class="icon__category" src="{{item.icon}}" alt="" [class.selectCategory]="selectCategory === item.id">
+        <p class="icon__favorites__item__icon">{{item.title}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="reclam__container__favorite">
+    <div class="interesting__container">
+      <div class="interesting__item">
+        <div class="interesting__item__header">
+          <h2 class="interesting__item__header__title">Интересное</h2>
+        </div>
+        <div class="interesting__item__content">
+          <div>
+            <div *ngFor='let item of getInterestingPhoto' (click)='addDiscount(item)' class="img__interesting" style='background-image: url("{{item.preview}}");'></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="line__container" (click)='expandInteresting()'>
+      <img [class.lineIntActive]='expandInterestingLine' class="line__interesting" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAApElEQVRIie3PvQnCQByH4UdsbC3SOkwaGy0DrmDhPjqC7iJOIFiooHYuEJsUZ0guiWB3L1xx8Pv6k0gk/s649p9hgwnOA7PmWOGCd5vohLJ6e2Q9gjMcAt8xJr4FwhJPFBF9UWlCzzVWkONRM5TVwvCa+upwUB4r6DIXLaubRnSywL0hqK34J6bYRcIHr25j6fua3qtHA0oyrKuCLV7DNiYSv/IB3T5GOZllTQ4AAAAASUVORK5CYII="/>
+    </div>
+    <div class="reclam__banner__favorites">
+      <div class="reclam__banner__item" (click)='adClick()'>
+        <img class="reclam__banner__item__image" src="assets/foto3.png" alt="">
+      </div>
+    </div>
+    <div class="favorites__footer">
+      <p class="favorites__footer__text">Разместить рекламу</p>
+      <p class="favorites__footer__text">Для бизнеса</p>
+    </div>
+  </div>
+</div>

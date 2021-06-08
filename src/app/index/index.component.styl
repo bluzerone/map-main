@@ -1,0 +1,1166 @@
+.index__container
+  width: 100%
+  height: 100vh
+  display: flex;
+  justify-content: space-between;
+
+.navigate__container
+  width: 380px;
+  z-index: 1;
+  position: relative;
+  display: flex;
+  transition: all 200ms ease;
+
+.navigate__container::-webkit-scrollbar, .navigate__container__first::-webkit-scrollbar
+  width: 0;
+  height: 0;
+
+.navigate__container__last
+  box-shadow: -5px 0px 24px #00000059;
+  transition: all 200ms ease;
+  width: 380px;
+  display: flex;
+  background: #fff;
+
+.navigate__container__add
+  display: none;
+  transition: all 200ms ease;
+  opacity: 0;
+
+.cart__container
+  width: 100%;
+
+.cart__container>img
+  width: 100%;
+  height: 100vh
+
+.carts__category
+  margin-bottom: 12px;
+
+.navigate__header
+  background-image: url('/assets/city.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 160px;
+
+.image__rubrics
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 160px;
+  width: 380px;
+
+.navigate__header__container
+  padding: 15px 25px 0 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 65px;
+
+.navigate__header__title
+  font-family: "Montserrat";
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0px 0px 10px #008eff;
+
+.bookmarks__container
+  position: absolute;
+  right: -33px;
+  top: 30px;
+  transform: rotate(180deg);
+  z-index: -1;
+
+.bookmark
+  border-radius: 10px 0px 0px 10px;
+  box-shadow: -1px 0px 14px #00000069;
+  background: #fff;
+  writing-mode: vertical-rl;
+  margin-bottom: 15px;
+  padding: 25px 10px;
+  font-size: 10px;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  color: #858484
+  cursor: pointer;
+  transition: all 300ms ease;
+
+.bookmark:focus
+  outline: none;
+
+.navigate__container__first
+  background: #fff;
+  width: 380px;
+  height: 100vh;
+  z-index: 5;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+.active-link
+  color: #000;
+
+.navigate__header__logo
+  cursor: pointer;
+
+.navigate__header__logo:focus
+  outline: none;
+
+.search__input
+  font-family: "Montserrat";
+  font-size: 14px;
+  height: 45px;
+  width: 305px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding-left: 20px;
+  box-shadow: 0px 0px 24px #00000096;
+
+.search__input::placeholder
+  font-family: "Montserrat";
+  color: #bdbdbd;
+  font-size: 14px;
+
+.navigate__header__search
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+.close__input
+  position: absolute;
+  width: 25px;
+  top: 11px;
+  right: 25px;
+  cursor: pointer;
+  opacity: 0;
+
+agm-map
+  width: 100%;
+  height: 100%;
+
+.navigate__container__add__list
+  padding: 25px 20px;
+
+.base__item__title
+  margin-bottom: 0;
+  font-size: 18px;
+  color: #000;
+  font-family: "Montserrat";
+  cursor: pointer;
+  display: flex;
+
+.base__item__title:focus
+  outline: none;
+
+.base__item__title__count
+  font-size: 12px;
+  margin-left: 3px;
+  margin-top: -5px;
+
+.base__item__short__description
+  color: #c5c4c4;
+  font-family: "Montserrat";
+  font-size: 12px;
+  margin-top: 25px;
+
+.icon__button
+  position: absolute;
+  right: 30px;
+  z-index: 99;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+.icon__button>img
+  cursor: pointer;
+
+.icon__button>img:focus
+  outline: none;
+
+.navdrop__container
+  z-index: 999;
+  background: #fff;
+  width: 0px;
+  box-shadow: 0px 0px 6px #0000002e;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  transition: all 200ms ease;
+  display: none;
+
+.navdrop__container__header
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+.close__icon
+  width: 30px;
+  cursor: pointer;
+
+.navdrop__content
+  padding: 20px 35px;
+  opacity: 0;
+  transition: all 200ms ease;
+
+.navdrop__content__item
+  padding-bottom: 30px;
+
+.navdrop__content__item>p
+  color: #000;
+  font-size: 14px;
+  font-family: "Montserrat";
+  margin: 0 0 25px 0;
+  cursor: pointer;
+
+.navdrop__content__item>p:focus
+  outline: none;
+
+.no__base__container
+  margin-top: 35px;
+
+.containerCart
+  width: 100%;
+  height: 100%;
+
+.shared__container
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  top: 0px;
+  opacity: 0;
+  transition: all 200ms ease;
+  z-index: 9999;
+  background: #0000009c;
+
+.registration__container
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  top: 0px;
+  transition: all 200ms ease;
+  opacity: 0;
+  z-index: 9999;
+  background: #0000009c;
+  overflow: auto;
+
+.shared__container__item
+  width: 450px;
+  height: 120px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 0px 20px #0000002e;
+  z-index: 99999;
+  position: relative;
+
+.shared__container__item__text
+  margin-top: 20px;
+  margin-left 25px
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 15px;
+  color: #afafaf;
+
+.errorDiscountModal
+  font-family: "Montserrat";
+  font-size: 12px;
+  color: red;
+  margin: 0;
+
+.textModalDisc
+  font-family: "Montserrat";
+  font-size: 13px;
+  width: 100%;
+  color: #afafaf;
+  span
+    color: #000;
+
+.shared__container__item__icon__btn
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+
+.img__shared
+  width: 35px;
+
+.index__registration__container
+  width: 700px;
+  height: 760px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 0px 20px #0000002e;
+  z-index: 99999;
+  position: relative;
+
+.close__icon
+  width: 30px;
+  position: absolute;
+  right: 23px;
+  top: 25px;
+  cursor: pointer;
+
+.close__icon__shared
+  width: 20px;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+
+.close__icon__menu
+  opacity: 0;
+  display: none;
+  transition: all 200ms ease;
+
+.close__icon:focus
+  outline: none;
+
+.registration__row
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+.registration__col
+  width: 50%;
+  padding: 60px 35px;
+
+.registration__title
+  margin-left 15px
+  margin-bottom 30px
+  font-family: "Montserrat", semibold;
+  font-weight: 600;
+  font-size: 18px;
+
+.telephone__input
+  font-family: "Montserrat";
+  font-size: 12px;
+  height: 41px;
+  width: 256px;
+  border: 1px solid #dfdfdf;
+  outline: none;
+  border-radius: 10px;
+  padding-left: 20px;
+  cursor: pointer;
+  margin-bottom 18px
+
+.password__input
+  font-family: "Montserrat";
+  font-size: 12px;
+  height: 41px;
+  width: 256px;
+  border: 1px solid #dfdfdf;
+  outline: none;
+  border-radius: 10px;
+  padding-left: 20px;
+  cursor: pointer;
+
+.password__input__forgot
+  font-family: "Montserrat";
+  font-size: 12px;
+  height: 41px;
+  width: 165px;
+  border: 1px solid #dfdfdf;
+  outline: none;
+  border-radius: 10px;
+  padding-left: 20px;
+  cursor: pointer;
+
+.login__btn
+  color: #3975ce;
+  font-size: 14px;
+  font-family: "Montserrat";
+  border: 1px solid #3975ce;
+  border-radius: 10px;
+  padding: 15px 15px;
+  width: fit-content;
+  cursor: pointer;
+
+.login__btn__forgot
+  color: #3975ce;
+  font-size: 14px;
+  font-family: "Montserrat";
+  border: 1px solid #3975ce;
+  border-radius: 10px;
+  padding: 11px 15px;
+  width: fit-content;
+  cursor: pointer;
+
+.error__login
+  font-size: 12px;
+  font-family: "Montserrat";
+  color: red;
+  margin-top: 0;
+
+.login__btn:focus
+  outline: none;
+  background: #3975ce;
+  color: #fff;
+
+.remember__me__container
+  display: flex;
+  align-items: center;
+  label
+    font-family: "Montserrat";
+
+#happy
+  border-color: #3975ce;
+
+
+label
+  color: #c2c2c2
+  font-size 12px
+
+.login__container
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top 18px
+  margin-bottom 40px
+
+.login__social__container
+  display flex
+  flex-direction: column;
+  margin-left 20px
+
+.login__social__item
+  display flex
+  align-items: center;
+  margin-bottom 15px
+  cursor pointer
+
+.login__social__icon
+  width: 20px;
+  height: 20px;
+  margin-right 10px
+
+.login__social__title
+  color: #c2c2c2
+  font-size 12px
+  margin-bottom 20px
+  font-family: "Montserrat";
+
+.login__social__text
+  font-size 12px
+  font-weight 500
+  margin-bottom: 0
+  margin-top 0
+  font-family: "Montserrat";
+
+.remember__pass__btn
+  color: #3975ce;
+  font-size: 12px;
+  font-family: "Montserrat";
+  margin-top 50px
+  cursor: pointer;
+
+.privacy__text
+  color: #a7a3a3;
+  font-size: 8px;
+  line-height: 12px;
+  margin-top: 15px
+
+.privacy__text__btn
+  color: #3975ce;
+
+.privacy__text__first
+  margin-top: 0;
+
+.registration__input
+  font-family: "Montserrat";
+  font-size: 12px;
+  height: 41px;
+  width: 225px;
+  border: 1px solid #dfdfdf;
+  outline: none;
+  border-radius: 10px;
+  padding-left: 20px;
+  cursor: pointer;
+  margin-bottom 18px
+
+.submit__registration__btn
+  color: #3975ce;
+  font-size: 14px;
+  font-family: "Montserrat";
+  border: 1px solid #3975ce;
+  border-radius: 10px;
+  padding: 15px 15px;
+  width: fit-content;
+  margin-top 30px
+  cursor: pointer;
+
+.check__privacy
+  display flex
+  margin-top 30px
+  .privacy__text
+    margin-top: 0px
+    margin-left: 5px;
+
+.exit__icon
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 0px 20px #0000002e;
+  margin-left: 7px;
+  margin-right: 8px;
+  img
+    width: 18px;
+
+#routerOutlet
+  transition: all 100ms ease;
+
+.cart__navigate
+  padding: 10px 7px 12px 4px;
+
+.top__photo__navigate
+  width: 298px;
+  height: 260px;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+
+.top__photo__navigate_gradient
+  background: linear-gradient(0deg, #31313157 0%, #000000ad 100%);
+  width: 100%
+  height: 100%
+  border-radius: 10px;
+
+.top__photo__control
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  p
+    color: #fff;
+    font-family: "Montserrat";
+    font-size: 10px;
+    margin: 0;
+    cursor: pointer;
+
+.top__photo__title
+  position: absolute;
+  top 110px
+  padding-left: 15px;
+  h3
+    color: #fff;
+    font-family: "Montserrat";
+    font-size: 25px;
+    font-weight: 500;
+    margin: 0;
+  p
+    margin: 0;
+    font-family: "Montserrat";
+    font-size: 12px;
+    color: #d7d7d7;
+    padding-right: 50px;
+    font-weight: 500;
+    margin-top: 10px;
+    line-height: 1.3;
+
+.top__photo__discount
+  background: #3975ce;
+  height: 40px;
+  width: 278px;
+  font-family: "Montserrat";
+  font-size: 14px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+
+.navigate__cart
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+
+.navigate__cart__item
+  color: #afafaf;
+  font-family: "Montserrat";
+  font-size: 14px;
+  cursor: pointer;
+
+.navigate__cart__active
+  color: #000;
+
+.contacts__foto__container
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+.contacts__foto__container__item
+  width: 72px;
+  height: 72px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: #aaaaaa;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 1px;
+  margin-bottom: 1px;
+
+.contacts__foto__container__item__add
+  background: #0000008e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 10px;
+  width: 73px;
+  height: 73px;
+  font-family: "Montserrat";
+
+.cart__content__container
+  display: flex;
+  align-items: flex-start;
+  padding: 20px 5px 10px 0;
+  cursor: pointer;
+  p
+    margin: 0;
+    font-family: "Montserrat";
+    font-size: 14px;
+    color: #000;
+  img
+    margin-left: 7px;
+    margin-top: 3px;
+
+.contacts__cart__container
+  overflow: auto;
+  height: 550px;
+  display: block;
+
+.adress__cart__title
+  font-size: 14px;
+  color: #000000;
+  font-family: "Montserrat";
+  margin-bottom: 0;
+
+.adress__cart__subtitle
+  color: #afafaf;
+  font-family: "Montserrat";
+  margin: 0;
+  font-size: 12px;
+
+.time__cart__container
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 30px;
+  cursor: pointer;
+  padding-right: 5px;
+
+.time__cart__title
+  margin: 0;
+  font-family: "Montserrat";
+  color: #000000;
+  font-size: 14px;
+
+.time__cart__subtitle
+  margin: 0;
+  color: #afafaf;
+  font-family: "Montserrat";
+  font-size: 12px;
+
+.time__cart__subtitle__close
+  margin: 0;
+  color: #9e0000;
+  font-family: "Montserrat";
+  font-size: 12px;
+
+.phone__cart__container
+  margin-top: 30px;
+
+.phone__cart__title
+  font-size: 14px;
+  color: #000;
+  font-weight: 500;
+  margin: 0;
+  font-family: "Montserrat";
+
+.phone__cart__subtitle
+  color: #afafaf;
+  font-family: "Montserrat";
+  font-size: 12px;
+  margin: 0;
+
+.adress__cart__container
+  margin-top: 20px;
+
+.site__post__title
+  font-family: "Montserrat";
+  color: #000;
+  font-size: 14px;
+  margin-top: 34px;
+  margin-bottom: 0;
+  a
+    color: #000;
+    text-decoration: none;
+
+.email__post__title
+  font-family: "Montserrat";
+  color: #000;
+  font-size: 14px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  a
+    color: #000;
+    text-decoration: none;
+
+.social__cart__container
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  p
+    color: #3975ce;
+    font-size: 14px;
+    font-family: "Montserrat";
+    width: 147px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-top: 0;
+    font-weight: 500;
+    a
+      color: #3975ce;
+      text-decoration: none;
+
+.error__cart
+  width: 300px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat";
+  font-size: 10px;
+  color: #acacac;
+  background: #f7f7f7;
+  border-radius: 10px;
+  margin-top: 40px;
+  cursor: pointer;
+
+.nav__cart__bottom
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  p
+    font-size: 10px;
+    color: #3975ce;
+    font-family: "Montserrat";
+    font-weight: 500;
+    cursor: pointer;
+
+.arrow-down, .arrow-down-time
+  transition: all 200ms ease;
+
+.active-arrow-down
+  transform: rotate(180deg);
+
+.active-arrow-down-time
+  transform: rotate(180deg);
+
+.information__cart
+  font-family: "Montserrat";
+
+.review__container
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+  padding-right: 5px;
+
+.review__container:first-child
+  margin-top: 25px;
+
+.review__name__user
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+.foto__user__review
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+.foto__user__review__not
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background: #aaa;
+  font-weight: 400;
+  font-size: 17px;
+
+.name__user__review
+  width: 185px;
+
+.name__user__review
+  margin: 0;
+  font-family: "Montserrat";
+  color: #000;
+  font-size: 14px;
+
+.date__user__review
+  color: #a9a8a8;
+  font-size: 12px;
+  margin: 0;
+  font-family: "Montserrat";
+
+.review__cart__container
+  overflow: auto;
+  width: 100%;
+  height: 550px;
+
+.review__content__user
+  font-family: "Montserrat";
+  font-size: 12px;
+  color: #000000;
+  margin-top: 15px;
+  font-weight: 500;
+
+.review__in__full
+  color: #3975ce;
+  cursor: pointer;
+  margin-bottom: 0;
+
+.review__count
+  font-size: 10px;
+  position: absolute;
+  margin-left: 2px;
+  margin-top: -5px;
+
+.search__input__cart__container
+  width: 100%;
+  margin-top: 20px;
+
+.search__input__cart
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #b0b0b0;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  font-family: "Montserrat";
+
+.categoty__cart__container
+  margin-top: 35px;
+
+.search__input__cart::placeholder
+  color: #afafaf;
+  font-size: 12px;
+
+.sub__container__cart
+  margin-left: 23px;
+
+.sub__container__cart__item, .category__parent__name
+  cursor: pointer;
+  font-family: "Montserrat";
+
+.sub__container__cart__item
+  margin-bottom: 7px;
+  font-family: "Montserrat";
+
+.category__parent__name-arrow-down
+  margin-right: 10px;
+  transition: all 100ms ease;
+
+.category__parent__name-arrow-down-active
+  transform: rotate(180deg);
+
+.title__search__category
+  color: #afafaf;
+  margin-top: 15px;
+  cursor: pointer;
+  font-family: "Montserrat";
+
+.result__search__category
+  display: none;
+  margin-top: 25px;
+  overflow: auto;
+  width: 100%;
+  height: 470px;
+
+.result__search__category__item
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+
+.result__search__category__item__first
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+.result__search__category__item__first-img
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 84px;
+  width: 84px;
+  border-radius: 10px;
+
+.result__search__category__item__first-price
+  font-family: "Montserrat";
+  color: #000;
+  font-weight: 500;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 13px;
+
+.result__search__category__item__first-price>span
+  font-size: 15px;
+
+.result__search__category__item__first__last
+  margin-left: 8px;
+
+.result__search__category__item__first__last-content
+  color: #000;
+  font-family: "Montserrat";
+  font-size: 11px;
+  margin: 0;
+
+.result__search__category__item__first__last-prefix
+  font-family: "Montserrat";
+  color: #878787;
+  font-size: 8px;
+  margin: 15px 0 0 0;
+  line-height: 1.3;
+
+.result__search__category__item__first__last-title
+  font-size: 16px;
+  font-family: "Montserrat";
+  color: #000000;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: 500;
+
+.back__product
+  display: flex;
+  align-items: center;
+  margin-bottom: 23px;
+  margin-top: 10px;
+  font-family: "Montserrat";
+  color: #000000;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  img
+    margin-right: 7px;
+
+.cart__star__head
+  display: flex;
+  align-items: center;
+  span
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Montserrat";
+    color: #fff;
+    margin-left: 10px;
+
+.foto__preview__container
+  width: 850px;
+  height: 100%;
+  background: #000000e2;
+  z-index: 99999999999;
+  position: absolute;
+  transition: all 200ms ease;
+  right: 0;
+
+.close__preview
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  cursor: pointer;
+  z-index: 999999999999999;
+
+.homeFoto
+  width: 1160px;
+
+.title__out__reg
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 0;
+
+.content__out__reg
+  padding: 0 30px;
+  font-family: "Montserrat";
+  font-size: 16px;
+  text-align: center;
+
+#recaptcha-container, #recaptcha-container-login
+  margin-top: 20px;
+
+progress
+  width: 99%;
+
+.swiper__image
+  width: 650px;
+  height: 700px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+.forgot__container
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+
+.schedule__table
+  display flex
+  margin-top 30px
+
+.day__name
+  font-size 12px
+  font-family: "Montserrat";
+  color: #5fb414
+  margin: 0
+  font-weight: 500;
+
+.schedule__col
+  width 40px
+
+.start__working__time
+  font-size 10px
+  margin: 0
+  font-family: "Montserrat";
+
+.end__working__time
+  font-size 10px
+  margin: 0
+  font-family: "Montserrat";
+
+.day__off
+  color: #b41414
+  margin: 0
+
+.day__off__working__time
+  font-size 10px
+  margin: 0
+
+.no__photo
+  color: #c5c4c4;
+  font-family: "Montserrat";
+  font-size: 12px;
+  text-align: center;
+  padding-top: 15px;
+  width: 220px;
+
+.discount__container
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  top: 0px;
+  opacity: 0;
+  transition: all 200ms ease;
+  z-index: 9999;
+  background: #0000009c;
+
+.discount__container__item
+  width: 450px;
+  height: 400px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 0px 20px #0000002e;
+  z-index: 99999;
+  position: relative;
+  padding: 15px 30px
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+.discount__input
+  font-family: "Montserrat";
+  font-size: 12px;
+  height: 41px;
+  width: 300px;
+  border: 1px solid #dfdfdf;
+  outline: none;
+  border-radius: 10px;
+  padding-left: 20px;
+  cursor: pointer;
+  margin-bottom 18px
+
+.discount__container__item__text
+  margin-top: 20px;
+  margin-bottom 40px
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 15px;
+  color: #afafaf;
+  span
+    color: #000;
+
+.introducedDiscount
+  width: 316px;
+  font-family: "Montserrat";
+  font-weight: 400;
+  color: #afafaf;
+  span
+    color: #000;
+    font-weight: 500;
+
+.amountOfDiscount
+  width: 316px;
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 14px;
+
+.apply__discount__btn
+  font-size: 10px;
+  font-family: "Montserrat";
+  border: 1px solid #d6412c
+  border-radius: 10px;
+  height 45px
+  width: fit-content;
+  margin-bottom 15px
+  cursor: pointer;
+  width 249px
+  display -webkit-flex
+  display -ms-flex
+  display flex
+  justify-content: center;
+  align-items: center;
+  margin-top 20px
+
+.back__star
+  width: 100%;
+  height: 47%;
+  position: absolute;
+  opacity: 0;
+  z-index: 9;

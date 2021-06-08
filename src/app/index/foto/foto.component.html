@@ -1,0 +1,34 @@
+<div class="photo__main__container">
+  <div class="discount__user__header">
+    <img *ngIf='authService.userData.photoURL' src={{authService.userData.photoURL}} alt="" class="user__photo">
+    <div *ngIf='!authService.userData.photoURL' class="foto__user__review__not">{{authService.userData.displayName | titleCase}}</div>
+    <div class="user">
+      <div class="user__surname">{{authService.userData.displayName}}</div>
+      <div class="user__awards__row">
+        <div class="not__awards__header" *ngIf="authService.userData.awords?.length === 0">У вас пока нет достижений!</div>
+        <div class="user__award__item" *ngFor="let award of authService.userData.awords">
+          <img src="assets/icons/archivement-photo.png" alt="" class="user__award__item " *ngIf="award === 'Я модель'">
+          <img src="assets/icons/arcivement-medal-bronse.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Бронзовый статус'">
+          <img src="assets/icons/archivement-medal-silver.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Серебряный статус'">
+          <img src="assets/icons/archivement-medal-gold.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Золотой статус'">
+        </div>
+      </div>
+    </div>
+    <div class="user__status">
+      <div class="discont__status">Стандартная скидка
+        <img src="assets/icons/help.png" alt="" class="help__btn">
+      </div>
+      <div class="user__email" *ngIf='authService.userData.email'>{{authService.userData.email}} <span *ngIf='authService.userData.phoneNumber'> {{authService.userData.phoneNumber}}</span> </div>
+      <div class="edit__pofile__btn">Редактировать профиль</div>
+    </div>
+    <div class="logout__btn" (click)='signOut()'>Выйти</div>
+  </div>
+  <div class="photo__container">
+    <div *ngIf='notFotoTitle' class="not__foto">Фото пока нет</div>
+      <div *ngFor='let img of fotoArray; let i = index'
+      [class.current__show]='i === indexImage'
+      (click)='showFoto(i)'
+      style='background-image: url({{img.url}});'
+      class="user__photo__item"></div>
+  </div>
+</div>

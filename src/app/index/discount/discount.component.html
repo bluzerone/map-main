@@ -1,0 +1,66 @@
+<div class="discount__main__container">
+  <div class="discount__user__header">
+    <img *ngIf='authService.userData.photoURL' src={{authService.userData.photoURL}} alt="" class="user__photo">
+    <div *ngIf='!authService.userData.photoURL' class="foto__user__review__not">{{authService.userData.displayName | titleCase}}</div>
+    <div class="user">
+      <div class="user__surname">{{authService.userData.displayName | truncate : 18}}</div>
+      <div class="user__awards__row">
+        <div class="not__awards__header" *ngIf="authService.userData.awords?.length === 0">У вас пока нет достижений!</div>
+        <div class="user__award__item" *ngFor="let award of authService.userData.awords">
+          <img src="assets/icons/archivement-photo.png" alt="" class="user__award__item " *ngIf="award === 'Я модель'">
+          <img src="assets/icons/arcivement-medal-bronse.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Бронзовый статус'">
+          <img src="assets/icons/archivement-medal-silver.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Серебряный статус'">
+          <img src="assets/icons/archivement-medal-gold.png" alt="" class="user__award__item mini__medal" *ngIf="award === 'Золотой статус'">
+        </div>
+      </div>
+    </div>
+    <div class="user__status">
+      <div class="discont__status">Стандартная скидка
+        <img src="assets/icons/help.png" alt="" class="help__btn">
+      </div>
+      <div class="user__email" *ngIf='authService.userData.email'>{{authService.userData.email}} <span *ngIf='authService.userData.phoneNumber'> {{authService.userData.phoneNumber}}</span> </div>
+      <div class="edit__pofile__btn">Редактировать профиль</div>
+    </div>
+    <div class="logout__btn" (click)='signOut()'>Выйти</div>
+  </div>
+  <div class="discount__nav__row">
+    <div [class.active]='toggleDiscount' class="my__discounts__btn" (click)="getDiskount()">Мои скидки</div>
+    <div [class.active]='!toggleDiscount' class="archive__discounts" (click)='discountsArchive()'>Архив скидок</div>
+  </div>
+  <div class="cards__container">
+
+    <div *ngIf='notDisc' class="not__desc">Скидок пока нет</div>
+    <div *ngIf='toggleDiscount' >
+      <div class="discount__card" *ngFor='let item of allUserDisc'>
+        <div class="discount__img" style='background-image: url({{item.img}})'></div>
+        <div class="discount__card__inner__container">
+          <div class="discount__card__header__row">
+            <div class="discount__title" (click)='showSaveDiscount(item.category, item.org)'>{{item.name}}</div>
+            <div class="discount__time__remaining">Осталось: {{item.endDate | amTimeAgo:true}}</div>
+          </div>
+          <div class="discount__quantity">Моя скидка {{item.discount}}%</div>
+          <div class="btns__row">
+            <div class="apply__discount__btn" (click)="indexComponent.openModalDiscount(item.discount, item.name, item.id)">Использовать скидку</div>
+            <div class="delete__discount__btn" (click)="removeDiskount(item.id)">Удалить</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf='!toggleDiscount' >
+      <div class="discount__card__arhive" *ngFor='let item of allUserDiscArhive'>
+        <div class="discount__img" style='background-image: url({{item.img}})'></div>
+        <div class="discount__card__inner__container">
+          <div class="discount__card__header__row">
+            <div class="discount__title" (click)='showSaveDiscount(item.category, item.org)'>{{item.name}}</div>
+          </div>
+          <div class="discount__quantity__arhive">Моя скидка: <span>{{item.discount}}%</span></div>
+          <div class="discount__quantity__arhive">Дата: <span>{{item.date}}</span> </div>
+          <div class="discount__quantity__arhive" *ngIf='item.product'>Название товара / услуги: <span>{{item.product}}</span> </div>
+          <div class="discount__quantity__arhive">Полная стоимость: <span>{{item.priceFull}} руб.</span> </div>
+          <div class="discount__quantity__arhive">Итого со скидкой: <span>{{item.priceItog}} руб.</span> </div>
+          <div class="discount__quantity__arhive">Уникальный код скидки: <span>{{item.personalDiscountCode}}</span> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

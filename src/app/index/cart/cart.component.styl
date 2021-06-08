@@ -1,0 +1,120 @@
+.institution__card__container
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+.institution__card__filter, .institution__card__list
+  width: 50%;
+
+.institution__card__list
+  overflow: auto;
+  padding-right: 20px;
+
+.institution__card__item
+  display: flex;
+  align-items: flex-start;
+  padding: 14px 18px;
+  cursor: pointer;
+
+.institution__card__item__logo
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+
+.institution__card__item__content
+  margin-left: 17px;
+  padding-right: 40px;
+
+.institution__card__item__content__title
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 500;
+
+.institution__card__item__content__subtitle
+  color: #afafaf;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-family: "Montserrat";
+  line-height: 1.2;
+
+.institution__card__item__content__address
+  margin-top: 12px;
+  margin-bottom: 0;
+  color: #000;
+  font-size: 12px;
+  font-family: "Montserrat";
+  font-weight: 500;
+
+.institution__card__item__content__description
+  color: #afafaf;
+  font-size: 12px;
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-family: "Montserrat";
+  line-height: 1.4;
+
+.active
+  background: #f7f7f7;
+  border-radius: 10px;
+  transition: all 200ms ease;
+
+.base__item__short__description
+  color: #c5c4c4;
+  font-family: "Montserrat";
+  font-size: 12px;
+
+.institution__card__filter__toogle
+  padding-left: 50px;
+
+.institution__card__filter__toogle__parent
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 22px;
+  p
+    margin: 0;
+    font-size: 14px;
+    font-family: "Montserrat";
+  img
+    margin-right: 14px;
+    transition: all 200ms ease;
+
+.rotate
+    transform: rotate(270deg);
+
+.institution__card__filter__check
+  width: 10px;
+  height: 10px;
+  border: 2px solid #afafaf;
+  border-radius: 50%;
+  margin-right: 13px;
+
+.institution__card__filter__check__active
+  background: #3975ce;
+  border-color: #3975ce;
+
+.institution__card__filter__toogle__child
+  padding-left: 45px;
+  margin-bottom: 40px;
+  p
+    font-size: 14px;
+    font-family: "Montserrat";
+    cursor: pointer;
+
+.display
+  display: none;
+
+.institution__card__item__stars
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+
+.activeSort
+  color: #3975ce;

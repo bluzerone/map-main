@@ -1,0 +1,110 @@
+.auth__container
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/fon.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: fixed;
+
+.auth__container__header
+  position: absolute;
+  width: 100%;
+
+.auth__container__header__description__text
+  font-size: 10px;
+  font-family: "Montserrat";
+  color: #fff;
+
+.auth__container__header__icon
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 15px;
+
+.auth__container__header__description
+  display: flex;
+  justify-content: center;
+
+.auth__container__footer
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  p
+    color: #dadada;
+    font-size: 10px;
+    font-family: "Montserrat";
+    margin: 0;
+
+.preloader {
+  /*фиксированное позиционирование*/
+  position: fixed;
+  /* координаты положения */
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /* фоновый цвет элемента */
+  background: #e0e0e000;
+  /* размещаем блок над всеми элементами на странице (это значение должно быть больше, чем у любого другого позиционированного элемента на странице) */
+  z-index: 1001;
+}
+
+.preloader__row {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  margin-top: -35px;
+  margin-left: -35px;
+  text-align: center;
+  animation: preloader-rotate 2s infinite linear;
+}
+
+.preloader__item {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  background-color: #337ab7;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  animation: preloader-bounce 1s infinite ease-in-out;
+}
+
+.preloader__item:last-child {
+  top: auto;
+  bottom: 0;
+  animation-delay: -0.4s;
+}
+
+@keyframes preloader-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes preloader-bounce {
+
+  0%,
+  100% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+}
+
+.loaded_hiding .preloader {
+  transition: 0.3s opacity;
+  opacity: 0;
+}
+
+.loaded .preloader {
+  display: none;
+}
